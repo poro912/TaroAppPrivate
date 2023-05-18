@@ -1,0 +1,54 @@
+마이크로 소프트 C# 코딩 규칙 문서	: https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/coding-style/coding-conventions
+예제로 배우는 C# 프로그래밍 네이밍 규칙 문서	: https://www.csharpstudy.com/Guide/Guide-naming.aspx
+
+매크로		: 대문자 스네이크 케이스	PRINT_MECRO 
+클래스		: 파스칼 케이스		DataClass
+구조체		: 파스칼 케이스		DataStructure
+			(단 typedef와 같이 따로 이름을 붙이는 경우에는
+				원본 구조체는 _스네이크 케이스	_data_structure
+				네이밍 구조체는 파스칼 케이스	DataStructure
+				C++ 기준)
+인터페이스	: I를 붙인 파스칼 케이스	IDataTranslater
+함수		: 캐멀 케이스			isData
+일반 변수	: 스네이크 케이스		data_variable
+멤버 변수	 
+		pubilc		: 스네이크 케이스	id
+		private	: _스테이크 케이스	_code
+
+유의 사항
+구조체
+	구조체는 주로 명사로 작명한다.	Document, Human
+
+함수
+	함수는 주로 동사로 작명한다.
+	동사명사의 형태로 작명한다.		isData, getData, checkData, run, start
+
+변수
+	for문의 임시변수를 제외하고 모든 변수는 의미가 있어야한다.	
+	변수 명은 다른 함수(시스템 함수)같은 여러 혼동하기 쉬운 명명을 피해야 한다.
+	변수 선언은 무조건 블럭의 처음에 한다. (오류 및 메모리 누수 방지)
+
+멤버 변수
+	접근 지정자 수식어 변수명 과 같이 작성한다.	public static access_code
+
+ETC
+	들여쓰기는 4칸 탭으로 한다.
+	중괄호는 문장의 끝에 한다.		if (true){
+						}
+
+	프로그램 작성 시 코드 블럭이 2~3줄이 넘어가면 별개의 함수로 뺀다 (가독성)
+
+	출력 문장은 무조건 함수화 시켜 따로 빼놓는다. (가독성 및 변경의 용이성, 번역의 용이성)
+
+	if 문이 길지 않고 한문장이라면 한줄로 쓴다	if( a == b ) { print("hello");}
+	if 문장 작성 시 왼쪽에 상수값이 오도록 한다	if( 10 == a )
+	
+	비슷한 역할을 수행하는 문장이 끝날 때 문단을 나눈다.
+			print("log");
+			print("오류 발생 오류코드 : 10");
+			
+			print("복구 불가능한 오류 발생으로 재시작");
+			restart();
+		
+
+
