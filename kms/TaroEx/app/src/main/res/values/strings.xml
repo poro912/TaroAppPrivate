@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Taro</string>
+    <string-array name="taroCardImage">
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+        <item>@drawable/main</item>
+
+    </string-array>
+</resources>
