@@ -11,9 +11,22 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AItaro"
             tools:targetApi="31">
+        <!-- 카드 뽑는곳 -->
         <activity
-                android:name=".MainActivity"
+                android:name="com.example.aitaro.MainActivity"
                 android:exported="true">
+        </activity>
+
+        <!-- 스프레드 리스트 -->
+        <activity android:name="com.example.aitaro.List_main">
+        </activity>
+
+        <!-- 메인 페이지-->
+        <activity
+                android:name="com.example.aitaro.Main"
+                android:exported="true">
+
+            <!-- 어플 시작 화면 선택 -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
