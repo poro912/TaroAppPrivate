@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".StartPage">
+
+    <ImageView
+            android:id="@+id/startImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/main"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+            android:id="@+id/linearLayout"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.9">
+
+        <Button
+                android:id="@+id/tenCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="타로카드"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="35dp"/>
+
+        <Button
+                android:id="@+id/twentyCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="재물운"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="35dp"/>
+
+        <Button
+                android:id="@+id/thirtyCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성공운"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="35dp"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
