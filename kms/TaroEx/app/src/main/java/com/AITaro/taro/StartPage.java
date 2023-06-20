@@ -1,7 +1,9 @@
 package com.AITaro.taro;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.AITaro.taro.Items.RecyclerViewItem;
@@ -22,47 +24,45 @@ public class StartPage extends AppCompatActivity implements Serializable {
         s_Binding = ActivityStartPageBinding.inflate(getLayoutInflater());
         setContentView(s_Binding.getRoot());
 
-        nextPage(10);
+        nextPage();
         selectCard();
+        preparing();
     }//onCreate
 
     private void selectCard() {
         s_Binding.startImage.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
+                s_Binding.startImage.setVisibility(View.GONE);
                 s_Binding.linearLayout.setVisibility(View.VISIBLE);
             }
         });
     }
 
-    private void nextPage(int num) {
-        int Num = num;
-        int finalNum = Num;
+    private void nextPage() {
         s_Binding.tenCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                Random random = new Random();
-
-                List<Integer> str = new ArrayList<>();
-                int num;
-                for (int i = 0; i < finalNum; i++) {
-                    while (true) {
-                        num = random.nextInt(87) + 1;
-
-                        if (str.contains(num)) {
-                            continue;
-                        } else {
-                            str.add(num);
-                            break;
-                        }
-                    }
-                }
-
-                intent.putIntegerArrayListExtra("s", (ArrayList<Integer>) str);
-
                 startActivity(intent);
                 finish();
+            }
+        });
+    }
+
+    private void preparing(){
+        s_Binding.fiftyCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(StartPage.this, "준비중1", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        s_Binding.sixtyCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(StartPage.this, "준비중2", Toast.LENGTH_SHORT).show();
             }
         });
     }

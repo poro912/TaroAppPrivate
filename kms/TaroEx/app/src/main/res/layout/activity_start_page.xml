@@ -9,13 +9,10 @@
 
     <ImageView
             android:id="@+id/startImage"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:src="@drawable/main"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            tools:ignore="MissingConstraints"/>
 
     <LinearLayout
             android:id="@+id/linearLayout"
@@ -27,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.9">
+            app:layout_constraintVertical_bias="0.2">
 
         <Button
                 android:id="@+id/tenCard"
@@ -54,6 +51,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="성공운"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="35dp"/>
+
+        <Button
+                android:id="@+id/fiftyCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="애정운"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="35dp"/>
+
+        <Button
+                android:id="@+id/sixtyCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="우정운"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
                 android:textColor="@color/white"
