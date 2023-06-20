@@ -9,17 +9,22 @@ import android.widget.LinearLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import com.AITaro.taro.Adapter.CardListAdapter;
+import com.AITaro.taro.Adapter.StoreSettingAdapter;
 import com.AITaro.taro.Items.RecyclerViewItem;
+import com.AITaro.taro.Items.StoreRecyclerViewItem;
 import com.AITaro.taro.SideItem.Setting_StoreActivity;
 import com.AITaro.taro.databinding.ActivityMainBinding;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding b_main;
-    private CardListAdapter Adapter;
+    private CardListAdapter cardListAdapter;
+
     private boolean floatingOpen = false;
     boolean pageOpen = false;
     Animation leftAnim;
@@ -41,12 +46,25 @@ public class MainActivity extends AppCompatActivity {
     }//endOfClass
 
     void init() {
+        //카드 뿌리기
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         b_main.cardRecyclerView.setLayoutManager(gridLayoutManager);
 
-        Adapter = new CardListAdapter();
-        b_main.cardRecyclerView.setAdapter(Adapter);
+        cardListAdapter = new CardListAdapter();
+        b_main.cardRecyclerView.setAdapter(cardListAdapter);
 
+        //storeRecyclerView
+        ArrayList<StoreRecyclerViewItem> itemData = new ArrayList<>();
+        // 아이템 넣기
+        itemData.add(new StoreRecyclerViewItem(R.drawable.close_icon, "카드 구매"));
+        itemData.add(new StoreRecyclerViewItem(R.drawable.add_icon, "스프레드 구매"));
+        itemData.add(new StoreRecyclerViewItem(R.drawable.ic_launcher_foreground, "배경 구매"));
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        StoreSettingAdapter storeSettingAdapter = new StoreSettingAdapter(itemData);
+
+        b_main.storeRecyclerView.setLayoutManager(linearLayoutManager);
+        b_main.storeRecyclerView.setAdapter(storeSettingAdapter);
     }
 
     private void getData() {
@@ -69,10 +87,10 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < imageList.size(); i++) {
             data.setTaroImage(imageList.get(i));
-            Adapter.addItem(data);
+            cardListAdapter.addItem(data);
         }
-
     }
+
 
     //플로팅 바
     private void floatingBar() {
@@ -123,14 +141,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //스토어버튼
-        b_main.storeBtn.setOnClickListener(new View.OnClickListener() {
+       /* b_main.storeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intentStore = new Intent(MainActivity.this, Setting_StoreActivity.class);
                 intentStore.putExtra("store", "store");
                 startActivity(intentStore);
             }
-        });
+        });*/
+
         //세팅버튼
         b_main.settingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,8 +161,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-     void animationPage() {
-
+    void animationPage() {
         leftAnim = AnimationUtils.loadAnimation(this, R.anim.setting_anime_left);
         rightAnim = AnimationUtils.loadAnimation(this, R.anim.setting_anime_right);
 
@@ -164,7 +182,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-   private class SlidingPageAnimationListener implements Animation.AnimationListener {
+
+    private class SlidingPageAnimationListener implements Animation.AnimationListener {
 
         @Override
         public void onAnimationStart(Animation animation) {

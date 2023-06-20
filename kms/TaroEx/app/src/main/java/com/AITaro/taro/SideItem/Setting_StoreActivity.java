@@ -19,8 +19,9 @@ public class Setting_StoreActivity extends AppCompatActivity {
         setContentView(bindingSetting.getRoot());
 
         getIntentData = getIntent();
-        backBtn();
         visibleData();
+        backBtn();
+
     }//endOfClass
 
     private void visibleData() {

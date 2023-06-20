@@ -36,7 +36,7 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
         return holder;
     }
 
-    public void removeCard(int position){
+    public void removeCard(int position) {
         items.remove(position);
         notifyItemRemoved(position);
     }
@@ -84,9 +84,6 @@ public class CardListAdapter extends RecyclerView.Adapter<CardListAdapter.ViewHo
             taroCard.setImageResource(item.getTaroImage());
         }
 
-        public void CardSelect() {
-            taroCard.setVisibility(View.INVISIBLE);
-        }
     }
 }
 

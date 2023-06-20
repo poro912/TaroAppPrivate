@@ -14,13 +14,15 @@
             android:theme="@style/Theme.Taro"
             tools:targetApi="31">
         <activity
+                android:name="com.StoreSettingPackage.StoreActivity"
+                android:exported="false"/>
+        <activity
                 android:name=".SideItem.Setting_StoreActivity"
                 android:exported="false">
             <meta-data
                     android:name="android.app.lib_name"
                     android:value=""/>
         </activity>
-
         <activity
                 android:name="com.EXTaro.TaroMainActivity"
                 android:exported="true">
