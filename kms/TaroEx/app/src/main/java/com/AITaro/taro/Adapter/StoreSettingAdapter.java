@@ -1,7 +1,9 @@
 package com.AITaro.taro.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,11 +20,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 public class StoreSettingAdapter extends RecyclerView.Adapter<StoreSettingAdapter.StoreViewHolder> {
 
     private ArrayList<StoreRecyclerViewItem> itemList = new ArrayList<>();
 
-    public StoreSettingAdapter(ArrayList<StoreRecyclerViewItem> itemData){
+    public StoreSettingAdapter(ArrayList<StoreRecyclerViewItem> itemData) {
         itemList = itemData;
     }
 
@@ -35,26 +39,35 @@ public class StoreSettingAdapter extends RecyclerView.Adapter<StoreSettingAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull StoreViewHolder holder, int position) {
-       StoreRecyclerViewItem item = itemList.get(position);
-       holder.storeImage.setImageResource(item.getStoreImage());
-       holder.storeText.setText(item.getStoreText());
+    public void onBindViewHolder(@NonNull @NotNull StoreViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        StoreRecyclerViewItem item = itemList.get(position);
+        holder.storeImage.setImageResource(item.getStoreImage());
+        holder.storeText.setText(item.getStoreText());
 
-       holder.cardView.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               int mPosition = holder.getAdapterPosition();
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int mPosition = holder.getAdapterPosition();
 
-               Context context = v.getContext();
+                Log.d("loglog", String.valueOf(mPosition));
+                Context context = view.getContext();
 
-               Intent moveActivity = new Intent(context, StoreActivity.class);
-               moveActivity.putExtra("butCard", "buyCard");
-               moveActivity.putExtra("buySpread", "buySpread");
-               moveActivity.putExtra("buybg", "buybg");
+                Intent moveActivity = new Intent(context, StoreActivity.class);
 
+                if (position == 0) {
+                    moveActivity.putExtra("buyCard", "buyCard");
+                    context.startActivity(moveActivity);
 
-           }
-       });
+                } else if (position == 1) {
+                    moveActivity.putExtra("buySpread", "buySpread");
+                    context.startActivity(moveActivity);
+
+                } else if (position == 2) {
+                    moveActivity.putExtra("buybg", "buybg");
+                    context.startActivity(moveActivity);
+                }
+            }
+        });
     }
 
     @Override

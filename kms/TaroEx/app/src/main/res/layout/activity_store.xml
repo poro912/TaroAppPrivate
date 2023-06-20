@@ -8,11 +8,12 @@
         tools:context="com.StoreSettingPackage.StoreActivity">
 
     <TextView
+            android:id="@+id/chText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" 이동"
             android:textSize="30dp"
-            android:textColor="@color/black"
+            android:textColor="#F60000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
