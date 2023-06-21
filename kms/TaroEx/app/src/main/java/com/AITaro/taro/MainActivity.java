@@ -30,8 +30,6 @@ public class MainActivity extends AppCompatActivity {
     Animation leftAnim;
     Animation rightAnim;
 
-    LinearLayout zzz;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
