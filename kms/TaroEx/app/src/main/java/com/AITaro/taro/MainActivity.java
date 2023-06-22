@@ -138,16 +138,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //스토어버튼
-       /* b_main.storeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentStore = new Intent(MainActivity.this, Setting_StoreActivity.class);
-                intentStore.putExtra("store", "store");
-                startActivity(intentStore);
-            }
-        });*/
-
         //세팅버튼
         b_main.settingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +147,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentSetting);
             }
         });
+
+        //스토어버튼
+       /* b_main.storeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentStore = new Intent(MainActivity.this, Setting_StoreActivity.class);
+                intentStore.putExtra("store", "store");
+                startActivity(intentStore);
+            }
+        });*/
     }
 
     void animationPage() {

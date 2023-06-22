@@ -16,6 +16,10 @@ public class BuyBackGroundFragment extends Fragment {
     FragmentBuyBackGroundBinding bindingBg;
     Context mcontext;
 
+    public static BuyBackGroundFragment newInstance() {
+        return new BuyBackGroundFragment();
+    }
+
     @Override
     public void onAttach(@NonNull @NotNull Context context) {
         super.onAttach(context);
@@ -37,8 +41,6 @@ public class BuyBackGroundFragment extends Fragment {
 
         return view;
     }
-
-
 
     @Override
     public void onDestroyView() {

@@ -7,18 +7,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import com.AITaro.taro.R;
-import com.AITaro.taro.databinding.FragmentBuySpreadBinding;
+import com.AITaro.taro.databinding.FragmentBuycardBinding;
 import org.jetbrains.annotations.NotNull;
 
+public class BuyCardFragment extends Fragment {
 
-public class BuySpreadFragment extends Fragment {
-
-    FragmentBuySpreadBinding bindingSpread;
+    private FragmentBuycardBinding bindingBuyCard;
     Context mcontext;
 
-    public static BuySpreadFragment newInstance() {
-        return new BuySpreadFragment();
+    public static BuyCardFragment newInstance() {
+        return new BuyCardFragment();
     }
 
     @Override
@@ -34,18 +32,18 @@ public class BuySpreadFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        bindingSpread = FragmentBuySpreadBinding.inflate(inflater, container, false);
-        View view = bindingSpread.getRoot();
+        bindingBuyCard = FragmentBuycardBinding.inflate(inflater, container, false);
+        View view = bindingBuyCard.getRoot();
 
-        bindingSpread.spread.setText("스프레드 구매");
-
+        bindingBuyCard.buyCardPage.setText("카드구매 페이지");
         return view;
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        bindingSpread = null;
 
+        bindingBuyCard = null;
     }
 }
