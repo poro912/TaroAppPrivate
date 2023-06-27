@@ -7,6 +7,14 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.commanddesignpattern.Interface.Command;
+import com.example.commanddesignpattern.Light.Light;
+import com.example.commanddesignpattern.Light.LightOffCommand;
+import com.example.commanddesignpattern.Light.LightOnCommand;
+import com.example.commanddesignpattern.RemoteControl.SimpleRemoteControl;
+import com.example.commanddesignpattern.Tv.TV;
+import com.example.commanddesignpattern.Tv.TVOffCommand;
+import com.example.commanddesignpattern.Tv.TVOnCommand;
 import com.example.commanddesignpattern.databinding.ActivityMainBinding;
 
 import java.util.EmptyStackException;
@@ -87,107 +95,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
         }
-    }
-}
-
-interface Command {
-    public void execute();
-}
-
-class Light {
-    Context mContext;
-
-    public Light(Context context){
-        mContext = context;
-    }
-
-    public void on(){
-        Log.d("CommandTest", "Light ON");
-    }
-
-    public void off(){
-        Log.d("CommandTest", "Light OFF");
-    }
-}
-
-class TV {
-    Context mContext;
-
-    public TV(Context context){
-        mContext = context;
-    }
-
-    public void on(){
-        Log.d("CommandTest", "TV ON");
-    }
-
-    public void off(){
-        Log.d("CommandTest", "TV OFF");
-    }
-}
-
-class LightOnCommand implements Command {
-    Light light;
-
-    public LightOnCommand(Light light) {
-        this.light = light;
-    }
-
-    @Override
-    public void execute() {
-        light.on();
-    }
-}
-
-class LightOffCommand implements Command {
-    Light light;
-
-    public LightOffCommand(Light light) {
-        this.light = light;
-    }
-
-    @Override
-    public void execute() {
-        light.off();
-    }
-}
-
-class TVOnCommand implements Command {
-    TV tv;
-
-    public TVOnCommand(TV tv) {
-        this.tv = tv;
-    }
-
-    @Override
-    public void execute() {
-        tv.on();
-    }
-}
-
-class TVOffCommand implements Command {
-    TV tv;
-
-    public TVOffCommand(TV tv) {
-        this.tv = tv;
-    }
-
-    @Override
-    public void execute() {
-        tv.off();
-    }
-}
-
-
-//커맨드 지정
-class SimpleRemoteControl {
-    Command slot;
-
-    public SimpleRemoteControl() {}
-    public void setCommand(Command command) {
-        this.slot = command;
-    }
-    public void buttonWasPressed() {
-        slot.execute();
     }
 }
