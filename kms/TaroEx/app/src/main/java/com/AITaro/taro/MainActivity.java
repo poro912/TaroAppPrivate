@@ -2,16 +2,23 @@ package com.AITaro.taro;
 
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.AITaro.taro.Adapter.CardListAdapter;
 import com.AITaro.taro.Adapter.StoreSettingAdapter;
+import com.AITaro.taro.CustomWidget.ExButton;
 import com.AITaro.taro.Items.RecyclerViewItem;
 import com.AITaro.taro.Items.StoreRecyclerViewItem;
 import com.AITaro.taro.SideItem.Setting_StoreActivity;
@@ -20,6 +27,7 @@ import com.AITaro.taro.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding b_main;
@@ -40,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         getData();
         clickItem();
         animationPage();
+        CustomWidget();
 
     }//endOfClass
 
@@ -202,5 +211,29 @@ public class MainActivity extends AppCompatActivity {
         public void onAnimationRepeat(Animation animation) {
 
         }
+    }
+
+    public void CustomWidget(){
+        ExButton exButton = new ExButton(this, b_main.buttonView);
+        exButton.CustomBtn();
+
+       /* Button button = new Button(this);
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+
+        button.setLayoutParams(layoutParams);
+        button.setText("동적 버튼 생성");
+        button.setGravity(Gravity.CENTER);
+
+        b_main.buttonView.addView(button);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "동적 버튼 생성", Toast.LENGTH_SHORT).show();
+            }
+        });*/
     }
 }

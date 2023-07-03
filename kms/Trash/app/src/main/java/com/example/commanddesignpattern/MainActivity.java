@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     SimpleRemoteControl simpleRemoteControl;
     Command nowCommand;
-
     Stack<Command> usedCommandList;
 
     @Override
