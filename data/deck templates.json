@@ -1,0 +1,20 @@
+{
+	"name": "",
+	"category": ["major","wand","cup","sword","pentacle"],
+	"cards": [
+		{
+			"category": "major/wand/cup/sword/pentacle",
+			"name": "",
+			"number": 0,
+			"forward": [],
+			"reverse": [],
+			"2": [],	// positive
+			"1": [],	// slightly positive
+			"0": [],	// moderate
+			"-1": [],	// slightly negative
+			"-2": [],	// negative
+			"degree": 0 // base level
+		},
+		{}
+	]
+}
