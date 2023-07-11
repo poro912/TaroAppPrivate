@@ -5,6 +5,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -35,6 +37,7 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
     @Override
     public DrawCardHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.draw_card_recycler_view, parent, false);
+
         return new DrawCardHolder(view);
     }
 
@@ -42,6 +45,8 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
     public void onBindViewHolder(@NonNull @NotNull DrawCardHolder holder, int position) {
         CardItem cardItem = drawcardItems.get(position);
         holder.back_of_taro_card.setImageResource(cardItem.getCard_item());
+        //쓰레기
+       /* rotation(holder);*/
 
         holder.back_of_taro_card.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -53,12 +58,19 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
     }
 
     private void removeCard(int position){
-        drawcardItems.remove(position);
-        notifyItemRemoved(position);
+        if (position >= 0 && position < drawcardItems.size()){
+            drawcardItems.remove(position);
+            notifyItemRemoved(position);
+        }
+
     }
 
     public void addItem(CardItem item) {
         drawcardItems.add(item);
+    }
+    void rotation(DrawCardHolder holder){
+        Animation rotateAnimation = AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.infinity_rotation);
+        holder.itemView.startAnimation(rotateAnimation);
     }
 
 

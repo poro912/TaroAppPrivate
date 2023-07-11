@@ -1,11 +1,11 @@
 package com.Integration.aitaroapp.Page;
 
 import android.content.Intent;
-import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.Integration.aitaroapp.Page.Adapter.CardDrawAdapter;
+import com.Integration.aitaroapp.Page.Custom.CustomBtn;
 import com.Integration.aitaroapp.Page.Item.CardItem;
 import com.Integration.aitaroapp.R;
 import com.Integration.aitaroapp.databinding.ActivityMainBinding;
@@ -33,7 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         drawCardItem();
         getDrawCard();
+        CustomWidget();
     }
+
+
 
     private void drawCardItem() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -49,5 +52,10 @@ public class MainActivity extends AppCompatActivity {
             draw_card.setCard_item(R.drawable.backoftarocard);
             cardDrawAdapter.addItem(draw_card);
         }
+    }
+
+    private void CustomWidget(){
+        CustomBtn customBtn = new CustomBtn(this, _binding_mainPage.buttonView);
+        customBtn.storeSettingBtn();
     }
 }
