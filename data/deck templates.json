@@ -8,12 +8,12 @@
 			"number": 0,
 			"forward": [],
 			"reverse": [],
-			"2": [],	// positive
-			"1": [],	// slightly positive
-			"0": [],	// moderate
-			"-1": [],	// slightly negative
-			"-2": [],	// negative
-			"degree": 0 // base level
+			"2": [],
+			"1": [],
+			"0": [],
+			"-1": [],
+			"-2": [],
+			"degree": 0
 		},
 		{}
 	]

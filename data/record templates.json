@@ -1,5 +1,7 @@
 {
 	"title": "",
+	"memo":"",
+	"interpretation":"",
 	"category": ["major","wand","cup","sword","pentacle"],
 	"spread":[
 		{
@@ -7,15 +9,18 @@
 			"y":0,
 			"rotation":0,
 			"mean":""
-		}
-	]
+		},
+		{}
+	],
 	"cards": [
 		{
 			"category": "major/wand/cup/sword/pentacle",
 			"name": "",
 			"number": 0,
+			"degree": 0,
 			"forward": [],
-			"reverse": []
+			"reverse": [],
+			"main keyword":""
 		},
 		{}
 	]
