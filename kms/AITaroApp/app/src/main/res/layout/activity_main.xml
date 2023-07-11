@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Page.MainActivity">
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/card_result_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.05">
+
+        <ImageView
+                android:id="@+id/pos_one"
+                android:layout_width="100dp"
+                android:layout_height="200dp"
+                android:src="@drawable/card_result_img"
+        />
+
+        <ImageView
+                android:id="@+id/pos_two"
+                android:layout_width="100dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/card_result_img"
+        />
+
+        <ImageView
+                android:id="@+id/pos_three"
+                android:layout_width="100dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/card_result_img"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/reset_result_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_result_layout"
+            app:layout_constraintBottom_toTopOf="@id/taro_card_selected_recycler_view"
+
+    >
+        <Button
+                android:id="@+id/suffle_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="다시 섞기"
+        android:layout_marginRight="15dp"/>
+
+        <Button
+                android:id="@+id/result_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="결과 보기"
+        android:layout_marginLeft="15dp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/taro_card_selected_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/draw_card_recycler_view"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reset_result_btn"
+
+
+    />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
