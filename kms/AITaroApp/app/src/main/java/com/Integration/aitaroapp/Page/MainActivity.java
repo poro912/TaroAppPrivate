@@ -3,7 +3,9 @@ package com.Integration.aitaroapp.Page;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.Integration.aitaroapp.Page.Adapter.CardDrawAdapter;
 import com.Integration.aitaroapp.Page.Custom.CustomBtn;
 import com.Integration.aitaroapp.Page.Item.CardItem;
@@ -39,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void drawCardItem() {
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        int span_count = 2;
+        GridLayoutManager layoutManager = new GridLayoutManager(this, span_count, RecyclerView.HORIZONTAL, false);
         cardDrawAdapter = new CardDrawAdapter(this, draw_card_item);
         _binding_mainPage.taroCardSelectedRecyclerView.setLayoutManager(layoutManager);
         _binding_mainPage.taroCardSelectedRecyclerView.setAdapter(cardDrawAdapter);
