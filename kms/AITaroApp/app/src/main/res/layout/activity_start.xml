@@ -7,6 +7,12 @@
         android:layout_height="match_parent"
         tools:context=".Page.StartActivity">
 
+    <include
+            android:id="@+id/included_item"
+            layout="@layout/store_page_include"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
     <ImageView
             android:id="@+id/start_image"
             android:layout_width="match_parent"
@@ -20,8 +26,6 @@
             android:layout_height="wrap_content"
             tools:listitem="@layout/card_selected_recycler_view"
             android:visibility="gone"
-
-
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

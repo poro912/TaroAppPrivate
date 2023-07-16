@@ -4,10 +4,8 @@ import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.Integration.aitaroapp.Page.Adapter.CardDrawAdapter;
-import com.Integration.aitaroapp.Page.Custom.CustomBtn;
 import com.Integration.aitaroapp.Page.Item.CardItem;
 import com.Integration.aitaroapp.R;
 import com.Integration.aitaroapp.databinding.ActivityMainBinding;
@@ -35,7 +33,6 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
         drawCardItem();
         getDrawCard();
-        CustomWidget();
     }
 
 
@@ -57,8 +54,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void CustomWidget(){
-        CustomBtn customBtn = new CustomBtn(this, _binding_mainPage.buttonView);
-        customBtn.storeSettingBtn();
-    }
 }
