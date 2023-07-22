@@ -21,28 +21,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.05">
 
-        <ImageView
-                android:id="@+id/pos_one"
-                android:layout_width="100dp"
-                android:layout_height="200dp"
-                android:src="@drawable/card_result_img"
-        />
 
-        <ImageView
-                android:id="@+id/pos_two"
-                android:layout_width="100dp"
-                android:layout_height="200dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/card_result_img"
-        />
-
-        <ImageView
-                android:id="@+id/pos_three"
-                android:layout_width="100dp"
-                android:layout_height="200dp"
-                android:layout_marginLeft="10dp"
-                android:src="@drawable/card_result_img"
-        />
     </LinearLayout>
 
     <LinearLayout

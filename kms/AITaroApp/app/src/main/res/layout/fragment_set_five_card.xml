@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        tools:context=".Page.Fragmant.SetFiveCardFragment">
+
+    <ImageButton
+            android:id="@+id/five_card_pos1_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/card_result_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintVertical_bias="0"/>
+
+    <ImageButton
+            android:id="@+id/five_card_pos2_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/card_result_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintVertical_bias="1"/>
+
+    <ImageButton
+            android:id="@+id/five_card_pos3_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/card_result_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0"/>
+
+    <ImageButton
+            android:id="@+id/five_card_pos4_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/card_result_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintVertical_bias="1"/>
+
+    <ImageButton
+            android:id="@+id/five_card_pos5_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/card_result_img"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintVertical_bias="0"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
