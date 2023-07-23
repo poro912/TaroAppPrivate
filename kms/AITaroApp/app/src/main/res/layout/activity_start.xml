@@ -7,18 +7,13 @@
         android:layout_height="match_parent"
         tools:context=".Page.StartActivity">
 
-    <include
-            android:id="@+id/included_item"
-            layout="@layout/store_page_include"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
     <ImageView
             android:id="@+id/start_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/main"
             tools:ignore="MissingConstraints"/>
+
 
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/card_select_RecyclerView"
@@ -31,5 +26,11 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.5"/>
+
+    <include
+            android:id="@+id/included_item"
+            layout="@layout/store_page_include"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

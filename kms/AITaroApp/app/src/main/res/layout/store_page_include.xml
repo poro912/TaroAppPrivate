@@ -6,12 +6,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <FrameLayout
-            android:id="@+id/blur_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-
     <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/store_btn"
             android:layout_width="15dp"
@@ -75,7 +69,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintVertical_bias="1"/>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

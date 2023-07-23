@@ -2,6 +2,7 @@ package com.Integration.aitaroapp.Page.Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,9 @@ import com.Integration.aitaroapp.R;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCardHolder> {
 
@@ -45,6 +49,8 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
     public void onBindViewHolder(@NonNull @NotNull DrawCardHolder holder, int position) {
         CardItem cardItem = drawcardItems.get(position);
         holder.back_of_taro_card.setImageResource(cardItem.getCard_item());
+        int cardNumber = cardItem.getSelected_num();
+        Log.d("CardDrawAdapter", "Card Number: " + cardNumber);
         //쓰레기
        /* rotation(holder);*/
 
@@ -52,7 +58,9 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
-                removeCard(holder.getAdapterPosition());
+                int mPosition = holder.getAdapterPosition();
+                removeCard(mPosition);
+                Log.d("loglog holder.positon", String.valueOf(mPosition));
             }
         });
     }

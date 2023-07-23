@@ -1,6 +1,9 @@
 package com.Integration.aitaroapp.Page;
 
 import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
+import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -39,6 +42,7 @@ public class StartActivity extends AppCompatActivity {
         recyclerViewItem();
         storeRecyclerView();
         layoutAnim();
+
     }
 
     private void mainWindowTouch() {

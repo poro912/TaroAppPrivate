@@ -52,6 +52,7 @@
                 android:layout_marginLeft="15dp"/>
     </LinearLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/taro_card_selected_recycler_view"
             android:layout_width="0dp"
