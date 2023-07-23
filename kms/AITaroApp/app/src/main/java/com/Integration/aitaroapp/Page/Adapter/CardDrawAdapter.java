@@ -83,7 +83,6 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
         holder.itemView.startAnimation(rotateAnimation);
     }
 
-
     public class DrawCardHolder extends RecyclerView.ViewHolder {
         private CardView cardView;
         private ImageView back_of_taro_card;

@@ -12,10 +12,7 @@
             android:theme="@style/Theme.AITaroApp"
             tools:targetApi="31">
         <activity
-                android:name=".Page.StoreActivity"
-                android:exported="false"/>
-        <activity
-                android:name=".Page.StartActivity"
+                android:name=".Page.ProgressBarActivity"
                 android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -23,6 +20,17 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+                android:name=".Page.StoreActivity"
+                android:exported="false"/>
+
+        <activity
+                android:name=".Page.StartActivity"
+                android:exported="true">
+
+        </activity>
+
         <activity
                 android:name=".Page.MainActivity"
                 android:exported="true"/>

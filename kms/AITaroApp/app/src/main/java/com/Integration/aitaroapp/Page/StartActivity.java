@@ -1,9 +1,5 @@
 package com.Integration.aitaroapp.Page;
 
-import android.annotation.SuppressLint;
-import android.graphics.Bitmap;
-import android.graphics.BlurMaskFilter;
-import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -16,7 +12,6 @@ import com.Integration.aitaroapp.Page.Item.MainBtnSelected;
 import com.Integration.aitaroapp.Page.Item.StoreRecyclerViewItem;
 import com.Integration.aitaroapp.R;
 import com.Integration.aitaroapp.databinding.ActivityStartBinding;
-import jp.wasabeef.blurry.Blurry;
 
 import java.util.ArrayList;
 
@@ -46,14 +41,9 @@ public class StartActivity extends AppCompatActivity {
     }
 
     private void mainWindowTouch() {
-        _binding_startPage.startImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
                 _binding_startPage.includedItem.storeBtn.setVisibility(View.VISIBLE);
-                _binding_startPage.startImage.setVisibility(View.GONE);
                 _binding_startPage.cardSelectRecyclerView.setVisibility(View.VISIBLE);
-            }
-        });
     }
 
     private void recyclerViewItem() {
