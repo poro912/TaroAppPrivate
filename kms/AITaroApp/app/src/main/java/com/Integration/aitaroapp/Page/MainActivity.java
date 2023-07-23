@@ -71,9 +71,9 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 86; i++) {
             CardItem draw_card = new CardItem();
             draw_card.setCard_item(R.drawable.backoftarocard);
-            draw_card.setSelected_num((r.nextInt() + i));
+            draw_card.setSelected_num(r.nextInt(86) + 1);
             cardDrawAdapter.addItem(draw_card);
-            Log.d("MainActivity", "Card Number: " + i);
+            Log.d("MainActivity", "Card Number: " + draw_card.getSelected_num());
         }
     }
 
@@ -102,12 +102,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void shuffleCards() {
-        // 카드 아이템 리스트를 섞습니다.
-        Collections.shuffle(draw_card_item);
-        // RecyclerView를 업데이트하여 섞인 카드를 표시합니다.
-        cardDrawAdapter.notifyDataSetChanged();
+        cardDrawAdapter.shuffleCards();
     }
 
 }

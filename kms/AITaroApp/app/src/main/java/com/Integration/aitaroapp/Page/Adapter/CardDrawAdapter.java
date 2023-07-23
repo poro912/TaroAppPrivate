@@ -55,12 +55,10 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
        /* rotation(holder);*/
 
         holder.back_of_taro_card.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 int mPosition = holder.getAdapterPosition();
                 removeCard(mPosition);
-                Log.d("loglog holder.positon", String.valueOf(mPosition));
             }
         });
     }
@@ -70,7 +68,11 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
             drawcardItems.remove(position);
             notifyItemRemoved(position);
         }
+    }
 
+    public void shuffleCards(){
+        Collections.shuffle(drawcardItems);
+        notifyDataSetChanged();
     }
 
     public void addItem(CardItem item) {
