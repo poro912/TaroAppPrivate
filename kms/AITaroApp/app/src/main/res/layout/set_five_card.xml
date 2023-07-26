@@ -5,9 +5,10 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        tools:context=".Page.Fragmant.SetFiveCardFragment">
+        android:id="@+id/five_card_Layout"
+        android:visibility="gone">
 
-    <ImageButton
+    <ImageView
             android:id="@+id/five_card_pos1_card"
             android:layout_width="80dp"
             android:layout_height="160dp"
@@ -19,7 +20,7 @@
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintVertical_bias="0"/>
 
-    <ImageButton
+    <ImageView
             android:id="@+id/five_card_pos2_card"
             android:layout_width="80dp"
             android:layout_height="160dp"
@@ -31,7 +32,7 @@
             app:layout_constraintHorizontal_bias="0.25"
             app:layout_constraintVertical_bias="1"/>
 
-    <ImageButton
+    <ImageView
             android:id="@+id/five_card_pos3_card"
             android:layout_width="80dp"
             android:layout_height="160dp"
@@ -43,7 +44,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintVertical_bias="0"/>
 
-    <ImageButton
+    <ImageView
             android:id="@+id/five_card_pos4_card"
             android:layout_width="80dp"
             android:layout_height="160dp"
@@ -55,7 +56,7 @@
             app:layout_constraintHorizontal_bias="0.75"
             app:layout_constraintVertical_bias="1"/>
 
-    <ImageButton
+    <ImageView
             android:id="@+id/five_card_pos5_card"
             android:layout_width="80dp"
             android:layout_height="160dp"
