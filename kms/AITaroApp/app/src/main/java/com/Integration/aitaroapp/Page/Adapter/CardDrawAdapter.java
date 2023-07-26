@@ -16,6 +16,7 @@ import com.Integration.aitaroapp.R;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCardHolder> {
@@ -24,9 +25,11 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
     private ArrayList<CardItem> drawcardItems = new ArrayList<>();  //카드 정보 어레이리스트
     private ArrayList<SelectedCardItem> card_item = new ArrayList<>();
     private ArrayList<Integer> resultCard = new ArrayList<>();         //뽑은 카드 값 어레이리스트
-    private Context mcontext;
     private CardSelectionListener cardSelectionListener;
     private ArrayList<CardItem> remove_card_items = new ArrayList<>();
+    private Context mcontext;
+    private ImageView imageView0, imageView1, imageView2, imageView3, imageView4, imageView5, imageView6, imageView7;
+    private ArrayList<ImageView> images = new ArrayList<>();
 
     public CardDrawAdapter(Context context, ArrayList<CardItem> cardItems) {
         this.mcontext = context;

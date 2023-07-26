@@ -3,6 +3,7 @@ package com.Integration.aitaroapp.Page;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,7 +24,6 @@ public class MainActivity extends AppCompatActivity implements CardSelectionList
     private ArrayList<CardItem> draw_card_item = new ArrayList<>();
     private ArrayList<Integer> selectedCard = new ArrayList<>();
     private Random r;
-
     Intent getData;
 
     @Override
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements CardSelectionList
         getDrawCard();
         deckShuffle();
         intentViewPage();
+        resultBtn();
     }
 
 
@@ -90,38 +91,104 @@ public class MainActivity extends AppCompatActivity implements CardSelectionList
         if (getData.hasExtra("three_card")) {
             _binding_mainPage.threeCardInclude.threeCardLayout.setVisibility(View.VISIBLE);
         }
-         if (getData.hasExtra("five_card")) {
+        if (getData.hasExtra("five_card")) {
             _binding_mainPage.fiveCardInclude.fiveCardLayout.setVisibility(View.VISIBLE);
         }
-         if (getData.hasExtra("eight_card")) {
+        if (getData.hasExtra("eight_card")) {
             _binding_mainPage.eightCardInclude.eightCardLayout.setVisibility(View.VISIBLE);
         }
     }
+
+    private void resultBtn(){
+        _binding_mainPage.resultBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, selectedCard.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     public void onCardSelected(CardItem cardItem, ArrayList<Integer> cardDrawn) {
+        this.selectedCard = cardDrawn;
         if (getData.hasExtra("three_card")) {
-            this.selectedCard = cardDrawn;
-
             Log.d("loglog", "selected Cards: " + selectedCard.toString());
-            if (selectedCard.size() == 3){
+            if (selectedCard.size() == 3) {
+                _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);
+                Log.d("loglog", "exit" + selectedCard.size());
+                _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
+            }
+
+            //selectedCard ArrayList에 값이 들어오면 사이즈별 마다 카드를 채워넣도록 변경
+            if (selectedCard.size() == 1){
+                _binding_mainPage.threeCardInclude.threeCardPos1Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 2){
+                _binding_mainPage.threeCardInclude.threeCardPos2Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 3){
+                _binding_mainPage.threeCardInclude.threeCardPos3Card.setImageResource(R.drawable.backoftarocard);
+            }
+        }
+
+        if (getData.hasExtra("five_card")) {
+            Log.d("loglog", "selected Cards: " + selectedCard.toString());
+            if (selectedCard.size() == 5) {
                 _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);
                 Log.d("loglog", "exit" + selectedCard.size());
 
                 _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
             }
 
-
-        }
-
-        if (getData.hasExtra("five_card")) {
-
-
-
+            if (selectedCard.size() == 1){
+                _binding_mainPage.fiveCardInclude.fiveCardPos1Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 2){
+                _binding_mainPage.fiveCardInclude.fiveCardPos2Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 3){
+                _binding_mainPage.fiveCardInclude.fiveCardPos3Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 4){
+                _binding_mainPage.fiveCardInclude.fiveCardPos4Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 5){
+                _binding_mainPage.fiveCardInclude.fiveCardPos5Card.setImageResource(R.drawable.backoftarocard);
+            }
         }
         if (getData.hasExtra("eight_card")) {
+            Log.d("loglog", "selected Cards: " + selectedCard.toString());
+            if (selectedCard.size() == 8) {
+                _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);
+                Log.d("loglog", "exit" + selectedCard.size());
 
+                _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
+            }
 
-
+            if (selectedCard.size() == 1){
+                _binding_mainPage.eightCardInclude.eightCardPos1Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 2){
+                _binding_mainPage.eightCardInclude.eightCardPos2Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 3){
+                _binding_mainPage.eightCardInclude.eightCardPos3Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 4){
+                _binding_mainPage.eightCardInclude.eightCardPos4Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 5){
+                _binding_mainPage.eightCardInclude.eightCardPos5Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 6){
+                _binding_mainPage.eightCardInclude.eightCardPos6Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 7){
+                _binding_mainPage.eightCardInclude.eightCardPos7Card.setImageResource(R.drawable.backoftarocard);
+            }
+            else if (selectedCard.size() == 8){
+                _binding_mainPage.eightCardInclude.eightCardPos8Card.setImageResource(R.drawable.backoftarocard);
+            }
         }
     }
 }
