@@ -109,16 +109,19 @@ public class MainActivity extends AppCompatActivity implements CardSelectionList
                     Log.d("loglog", "main_Three" + String.valueOf(selectedCard));
                     move_result.putExtra("card_result3", selectedCard);
                     startActivity(move_result);
+                    finish();
                 }
                 if (selectedCard.size() == 5){
                     Log.d("loglog", "main_Five" + String.valueOf(selectedCard));
                     move_result.putExtra("card_result5", selectedCard);
                     startActivity(move_result);
+                    finish();
                 }
                 if (selectedCard.size() == 8){
                     Log.d("loglog", "main_Eight" + String.valueOf(selectedCard));
                     move_result.putExtra("card_result8", selectedCard);
                     startActivity(move_result);
+                    finish();
                 }
 
                 Toast.makeText(MainActivity.this, selectedCard.toString(), Toast.LENGTH_SHORT).show();
@@ -135,6 +138,9 @@ public class MainActivity extends AppCompatActivity implements CardSelectionList
                 _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);//결과 버튼을 보이기
                 Log.d("loglog", "exit" + selectedCard.size());
                 _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
+
+              /*  initCardList();     //카드 초기화, 다시뽑기*/
+
             }
 
             //selectedCard ArrayList에 값이 들어오면 사이즈별 마다 카드를 채워넣도록 변경

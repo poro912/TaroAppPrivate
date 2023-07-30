@@ -63,7 +63,7 @@
                 android:id="@+id/suffle_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="다시 섞기"
+                android:text="셔플"
                 android:layout_marginRight="15dp"/>
 
         <Button
