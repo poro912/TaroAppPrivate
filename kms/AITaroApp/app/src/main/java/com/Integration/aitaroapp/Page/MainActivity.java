@@ -20,11 +20,12 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements CardSelectionListener {
     private ActivityMainBinding _binding_mainPage;
-    CardDrawAdapter cardDrawAdapter;
+    private CardDrawAdapter cardDrawAdapter;
     private ArrayList<CardItem> draw_card_item = new ArrayList<>();
     private ArrayList<Integer> selectedCard = new ArrayList<>();
     private Random r;
-    Intent getData;
+    Intent get_data;
+    Intent move_result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements CardSelectionList
         setContentView(_binding_mainPage.getRoot());
 
         //인텐트
-        getData = getIntent();
+        get_data = getIntent();
         //어댑터 객체 생성
         cardDrawAdapter = new CardDrawAdapter(this, draw_card_item);
 
@@ -88,21 +89,38 @@ public class MainActivity extends AppCompatActivity implements CardSelectionList
 
 
     private void intentViewPage() {
-        if (getData.hasExtra("three_card")) {
+        if (get_data.hasExtra("three_card")) {
             _binding_mainPage.threeCardInclude.threeCardLayout.setVisibility(View.VISIBLE);
         }
-        if (getData.hasExtra("five_card")) {
+        if (get_data.hasExtra("five_card")) {
             _binding_mainPage.fiveCardInclude.fiveCardLayout.setVisibility(View.VISIBLE);
         }
-        if (getData.hasExtra("eight_card")) {
+        if (get_data.hasExtra("eight_card")) {
             _binding_mainPage.eightCardInclude.eightCardLayout.setVisibility(View.VISIBLE);
         }
     }
 
     private void resultBtn(){
+        move_result = new Intent(this, ResultActivity.class);
         _binding_mainPage.resultBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (selectedCard.size() == 3){
+                    Log.d("loglog", "main_Three" + String.valueOf(selectedCard));
+                    move_result.putExtra("card_result3", selectedCard);
+                    startActivity(move_result);
+                }
+                if (selectedCard.size() == 5){
+                    Log.d("loglog", "main_Five" + String.valueOf(selectedCard));
+                    move_result.putExtra("card_result5", selectedCard);
+                    startActivity(move_result);
+                }
+                if (selectedCard.size() == 8){
+                    Log.d("loglog", "main_Eight" + String.valueOf(selectedCard));
+                    move_result.putExtra("card_result8", selectedCard);
+                    startActivity(move_result);
+                }
+
                 Toast.makeText(MainActivity.this, selectedCard.toString(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -111,10 +129,10 @@ public class MainActivity extends AppCompatActivity implements CardSelectionList
     @Override
     public void onCardSelected(CardItem cardItem, ArrayList<Integer> cardDrawn) {
         this.selectedCard = cardDrawn;
-        if (getData.hasExtra("three_card")) {
+        if (get_data.hasExtra("three_card")) {
             Log.d("loglog", "selected Cards: " + selectedCard.toString());
-            if (selectedCard.size() == 3) {
-                _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);
+            if (selectedCard.size() == 3) {     //뽑은 카드ArrayList의 사이즈가 3이면
+                _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);//결과 버튼을 보이기
                 Log.d("loglog", "exit" + selectedCard.size());
                 _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
             }
@@ -131,10 +149,10 @@ public class MainActivity extends AppCompatActivity implements CardSelectionList
             }
         }
 
-        if (getData.hasExtra("five_card")) {
+        if (get_data.hasExtra("five_card")) {
             Log.d("loglog", "selected Cards: " + selectedCard.toString());
-            if (selectedCard.size() == 5) {
-                _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);
+            if (selectedCard.size() == 5) {     //뽑은 카드ArrayList의 사이즈가 5이면
+                _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);        //결과 버튼을 보이기
                 Log.d("loglog", "exit" + selectedCard.size());
 
                 _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
@@ -156,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements CardSelectionList
                 _binding_mainPage.fiveCardInclude.fiveCardPos5Card.setImageResource(R.drawable.backoftarocard);
             }
         }
-        if (getData.hasExtra("eight_card")) {
+        if (get_data.hasExtra("eight_card")) {
             Log.d("loglog", "selected Cards: " + selectedCard.toString());
             if (selectedCard.size() == 8) {
                 _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);
