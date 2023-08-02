@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Page.MainActivity">
+
+    <include
+            android:id="@+id/three_card_include"
+            layout="@layout/set_three_card"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/reset_result_btn"
+            app:layout_constraintTop_toTopOf="@+id/sizeLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <include
+            android:id="@+id/five_card_include"
+            layout="@layout/set_five_card"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/reset_result_btn"
+            app:layout_constraintTop_toTopOf="@+id/sizeLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <include
+            android:id="@+id/eight_card_include"
+            layout="@layout/set_eight_card"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/reset_result_btn"
+            app:layout_constraintTop_toTopOf="@+id/sizeLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+    <FrameLayout
+            android:id="@+id/sizeLayout"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:visibility="visible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0"/>
+
+
+    <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/reset_result_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sizeLayout"
+            app:layout_constraintBottom_toTopOf="@id/taro_card_selected_recycler_view">
+        <Button
+                android:id="@+id/suffle_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="셔플"
+                android:layout_marginRight="15dp"/>
+
+        <Button
+                android:id="@+id/result_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="결과 보기"
+                android:visibility="invisible"
+                android:layout_marginLeft="15dp"/>
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/taro_card_selected_recycler_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/draw_card_recycler_view"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reset_result_btn"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

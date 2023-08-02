@@ -7,6 +7,7 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cardRecyclerView"
             android:layout_width="0dp"
@@ -66,6 +67,16 @@
             app:layout_constraintHorizontal_bias="0.9"
             app:layout_constraintVertical_bias="0.03"/>
 
+    <LinearLayout
+            android:id="@+id/buttonView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/page"
             android:orientation="vertical"
@@ -103,17 +114,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/exText"
                 app:layout_constraintBottom_toTopOf="@id/settingBtn"/>
 
-      <!--  <Button
-                android:id="@+id/storeBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="상점"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintVertical_bias="0.05"/>-->
+        <!--  <Button
+                  android:id="@+id/storeBtn"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="상점"
+                  app:layout_constraintEnd_toEndOf="parent"
+                  app:layout_constraintStart_toStartOf="parent"
+                  app:layout_constraintBottom_toBottomOf="parent"
+                  app:layout_constraintTop_toTopOf="parent"
+                  app:layout_constraintHorizontal_bias="0.0"
+                  app:layout_constraintVertical_bias="0.05"/>-->
 
         <ImageButton
                 android:id="@+id/settingBtn"
@@ -128,6 +139,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintVertical_bias="1"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
