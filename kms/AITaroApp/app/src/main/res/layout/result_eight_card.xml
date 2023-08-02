@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/result_eight_card_page"
+        android:visibility="gone">
+
+    <ImageView
+            android:id="@+id/result_eight_pos1_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/backoftarocard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"/>
+
+    <ImageView
+            android:id="@+id/result_eight_pos2_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/backoftarocard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.32"/>
+
+    <ImageView
+            android:id="@+id/result_eight_pos3_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/backoftarocard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.64"/>
+
+    <ImageView
+            android:id="@+id/result_eight_pos4_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/backoftarocard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.9"
+            app:layout_constraintHorizontal_bias="0.1"/>
+
+    <ImageView
+            android:id="@+id/result_eight_pos5_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/backoftarocard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.9"
+            app:layout_constraintHorizontal_bias="0.9"/>
+
+    <ImageView
+            android:id="@+id/result_eight_pos6_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/backoftarocard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintHorizontal_bias="0.1"/>
+
+    <ImageView
+            android:id="@+id/result_eight_pos7_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/backoftarocard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintHorizontal_bias="0.9"/>
+
+    <ImageView
+            android:id="@+id/result_eight_pos8_card"
+            android:layout_width="80dp"
+            android:layout_height="160dp"
+            android:background="@drawable/backoftarocard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.9"
+    />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
