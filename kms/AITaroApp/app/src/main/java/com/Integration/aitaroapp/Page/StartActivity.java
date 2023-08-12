@@ -3,11 +3,13 @@ package com.Integration.aitaroapp.Page;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.Integration.aitaroapp.Page.Adapter.GameSelectedRecyclerViewAdapter;
 import com.Integration.aitaroapp.Page.Adapter.StoreSettingAdapter;
+import com.Integration.aitaroapp.Page.Dialog.BaseActivity;
+import com.Integration.aitaroapp.Page.Dialog.MyDialog;
 import com.Integration.aitaroapp.Page.Item.MainBtnSelected;
 import com.Integration.aitaroapp.Page.Item.StoreRecyclerViewItem;
 import com.Integration.aitaroapp.R;
@@ -19,6 +21,7 @@ public class StartActivity extends AppCompatActivity {
     private ActivityStartBinding _binding_startPage;
     private ArrayList<MainBtnSelected> btn_item = new ArrayList<>();
     boolean pageOpen = false;
+    private MyDialog myDialog;
     Animation left_anim;
     Animation right_anim;
 
@@ -126,5 +129,11 @@ public class StartActivity extends AppCompatActivity {
         public void onAnimationRepeat(Animation animation) {
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        myDialog = new MyDialog(this);
+        myDialog.show();
     }
 }

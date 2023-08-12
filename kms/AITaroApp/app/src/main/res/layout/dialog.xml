@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/dialog_exit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text= "종료하시나요?"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:background="@color/yellow"
+    />
+
+    <TextView
+            android:id="@+id/dialog_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아직 많은 컨텐츠가 준비되어 있어요!"
+            android:textColor="@color/yellow"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            android:nextFocusDown="@+id/dialogContent"/>
+
+    <LinearLayout
+            android:id="@+id/btnLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/dialogCloseBtn"
+                android:layout_height="wrap_content"
+                android:background="@drawable/dialog_btn"
+                android:layout_width="150dp"
+                android:text="취소"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/dialogOKBtn"
+                android:background="@drawable/dialog_btn"
+                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:text="종료"/>
+
+</LinearLayout>
+
+</LinearLayout>

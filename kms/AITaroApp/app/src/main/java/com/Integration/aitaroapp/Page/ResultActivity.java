@@ -15,9 +15,9 @@ import com.Integration.aitaroapp.databinding.ActivityResultBinding;
 import java.util.ArrayList;
 
 public class ResultActivity extends AppCompatActivity {
-    private CardDrawAdapter cardDrawAdapter;
     private ActivityResultBinding _binding_result_page;
     private Intent get_data;
+    private Intent move_activity;
     private ArrayList<Integer> result_card = new ArrayList<>();     //결과 카드들을 담을 ArrayList
 
     @Override
@@ -27,6 +27,7 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(_binding_result_page.getRoot());
 
         get_data = getIntent();
+        move_activity = new Intent(ResultActivity.this, StartActivity.class);
 
         init();
     }
@@ -34,6 +35,7 @@ public class ResultActivity extends AppCompatActivity {
     private void init() {
         handleReceivedArrayList();
         btnItem();
+        cardValue();
     }
 
 
@@ -80,9 +82,42 @@ public class ResultActivity extends AppCompatActivity {
         _binding_result_page.mainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent move_activity = new Intent(ResultActivity.this, StartActivity.class);
+
                 startActivity(move_activity);
+                finish();
             }
         });
+    }
+
+    private void cardValue(){
+        _binding_result_page.resultThreeCardInclude.resultThreePos1Card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            String list_value = result_card.get(0).toString();
+                Toast.makeText(ResultActivity.this, list_value, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+        _binding_result_page.resultThreeCardInclude.resultThreePos2Card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String list_value = result_card.get(1).toString();
+                Toast.makeText(ResultActivity.this, list_value, Toast.LENGTH_SHORT).show();
+            }
+        });
+        _binding_result_page.resultThreeCardInclude.resultThreePos3Card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String list_value = result_card.get(2).toString();
+                Toast.makeText(ResultActivity.this, list_value, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(move_activity);
+        finish();
+
     }
 }
