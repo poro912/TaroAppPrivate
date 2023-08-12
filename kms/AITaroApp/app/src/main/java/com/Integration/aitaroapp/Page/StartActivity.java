@@ -17,7 +17,7 @@ import com.Integration.aitaroapp.databinding.ActivityStartBinding;
 
 import java.util.ArrayList;
 
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends BaseActivity {
     private ActivityStartBinding _binding_startPage;
     private ArrayList<MainBtnSelected> btn_item = new ArrayList<>();
     boolean pageOpen = false;
@@ -45,8 +45,8 @@ public class StartActivity extends AppCompatActivity {
 
     private void mainWindowTouch() {
 
-                _binding_startPage.includedItem.storeBtn.setVisibility(View.VISIBLE);
-                _binding_startPage.cardSelectRecyclerView.setVisibility(View.VISIBLE);
+        _binding_startPage.includedItem.storeBtn.setVisibility(View.VISIBLE);
+        _binding_startPage.cardSelectRecyclerView.setVisibility(View.VISIBLE);
     }
 
     private void recyclerViewItem() {
@@ -76,7 +76,7 @@ public class StartActivity extends AppCompatActivity {
         _binding_startPage.includedItem.storeRecyclerView.setAdapter(storeSettingAdapter);
 
     }
-    
+
     private void layoutAnim() {
         //스토어, 설정 페이지 애니메이션 효과적용
         left_anim = AnimationUtils.loadAnimation(this, R.anim.setting_anime_left);
@@ -90,13 +90,10 @@ public class StartActivity extends AppCompatActivity {
         _binding_startPage.includedItem.storeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pageOpen)
-                {
+                if (pageOpen) {
                     _binding_startPage.includedItem.page.startAnimation(left_anim);
                     _binding_startPage.includedItem.storeBtn.startAnimation(left_anim);
-                }
-                else
-                {
+                } else {
                     _binding_startPage.includedItem.page.setVisibility(View.VISIBLE);
                     _binding_startPage.includedItem.page.startAnimation(right_anim);
                     _binding_startPage.includedItem.storeBtn.startAnimation(right_anim);
@@ -114,13 +111,10 @@ public class StartActivity extends AppCompatActivity {
 
         @Override
         public void onAnimationEnd(Animation animation) {
-            if (pageOpen)
-            {
+            if (pageOpen) {
                 _binding_startPage.includedItem.page.setVisibility(View.GONE);
                 pageOpen = false;
-            }
-            else
-            {
+            } else {
                 pageOpen = true;
             }
         }
@@ -135,5 +129,10 @@ public class StartActivity extends AppCompatActivity {
     public void onBackPressed() {
         myDialog = new MyDialog(this);
         myDialog.show();
+    }
+
+    @Override
+    public void onExitConfirmed() {
+        exitApp();
     }
 }

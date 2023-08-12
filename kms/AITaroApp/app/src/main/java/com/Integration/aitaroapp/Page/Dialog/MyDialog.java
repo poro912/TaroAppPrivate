@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import androidx.annotation.NonNull;
+import com.Integration.aitaroapp.Page.Interface.ExitDialogListener;
 import com.Integration.aitaroapp.databinding.DialogBinding;
 
 public class MyDialog extends Dialog {
@@ -38,8 +39,8 @@ public class MyDialog extends Dialog {
             public void onClick(View v) {
                 dismiss(); // 다이얼로그 닫기
 
-                if (getContext() instanceof BaseActivity){
-                    ((BaseActivity) getContext()).exitApp();
+                if (mContext instanceof ExitDialogListener) {
+                    ((ExitDialogListener) mContext).onExitConfirmed();
                 }
             }
         });

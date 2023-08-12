@@ -2,8 +2,9 @@ package com.Integration.aitaroapp.Page.Dialog;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import com.Integration.aitaroapp.Page.Interface.ExitDialogListener;
 
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends AppCompatActivity implements ExitDialogListener {
     private MyDialog myDialog;
 
     @Override
@@ -15,9 +16,9 @@ public class BaseActivity extends AppCompatActivity {
         finishAffinity();
     }
 
-    public void showExitDialog(){
-        myDialog = new MyDialog(this);
-        myDialog.show();
+    @Override
+    public void onExitConfirmed() {
+        exitApp();
     }
 }
 
