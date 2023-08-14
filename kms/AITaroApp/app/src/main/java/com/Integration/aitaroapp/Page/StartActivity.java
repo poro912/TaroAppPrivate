@@ -1,5 +1,8 @@
 package com.Integration.aitaroapp.Page;
 
+import android.annotation.SuppressLint;
+import android.opengl.Visibility;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -22,6 +25,8 @@ public class StartActivity extends BaseActivity {
     private ArrayList<MainBtnSelected> btn_item = new ArrayList<>();
     boolean pageOpen = false;
     private MyDialog myDialog;
+    private SlidingPageAnimationListener slidingPageAnimationListener = new SlidingPageAnimationListener();
+    //스토어, 설정 페이지 애니메이션 효과적용
     Animation left_anim;
     Animation right_anim;
 
@@ -40,6 +45,7 @@ public class StartActivity extends BaseActivity {
         recyclerViewItem();
         storeRecyclerView();
         layoutAnim();
+        backGroundTouchLayout();
 
     }
 
@@ -77,15 +83,21 @@ public class StartActivity extends BaseActivity {
 
     }
 
+    private void backGroundTouchLayout() {
+        _binding_startPage.includedItem.blurLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return true; // 터치 이벤트가 다른 곳으로 전달되도록 함
+            }
+        });
+    }
+
     private void layoutAnim() {
-        //스토어, 설정 페이지 애니메이션 효과적용
         left_anim = AnimationUtils.loadAnimation(this, R.anim.setting_anime_left);
         right_anim = AnimationUtils.loadAnimation(this, R.anim.setting_anime_right);
 
-        SlidingPageAnimationListener animationListener = new SlidingPageAnimationListener();
-
-        left_anim.setAnimationListener(animationListener);
-        right_anim.setAnimationListener(animationListener);
+        left_anim.setAnimationListener(slidingPageAnimationListener);
+        right_anim.setAnimationListener(slidingPageAnimationListener);
 
         _binding_startPage.includedItem.storeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,11 +107,40 @@ public class StartActivity extends BaseActivity {
                     _binding_startPage.includedItem.storeBtn.startAnimation(left_anim);
                 } else {
                     _binding_startPage.includedItem.page.setVisibility(View.VISIBLE);
+                    _binding_startPage.includedItem.blurLayout.setVisibility(View.VISIBLE);
                     _binding_startPage.includedItem.page.startAnimation(right_anim);
                     _binding_startPage.includedItem.storeBtn.startAnimation(right_anim);
                 }
             }
         });
+    }
+
+
+    private void backPressedAnim() {
+        left_anim = AnimationUtils.loadAnimation(StartActivity.this, R.anim.setting_anime_left);
+        left_anim.setAnimationListener(slidingPageAnimationListener);
+
+        if (pageOpen) {
+            // 페이지가 열려있을 때 뒤로가기 버튼을 누르면 페이지를 닫고 pageOpen을 false로 변경
+            _binding_startPage.includedItem.page.startAnimation(left_anim);
+            _binding_startPage.includedItem.storeBtn.startAnimation(left_anim);
+            _binding_startPage.includedItem.page.setVisibility(View.GONE);
+            _binding_startPage.includedItem.blurLayout.setVisibility(View.GONE);
+            pageOpen = true;
+        } else {
+            myDialog = new MyDialog(this);
+            myDialog.show();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backPressedAnim();
+    }
+
+    @Override
+    public void onExitConfirmed() {
+        exitApp();
     }
 
     private class SlidingPageAnimationListener implements Animation.AnimationListener {
@@ -113,6 +154,7 @@ public class StartActivity extends BaseActivity {
         public void onAnimationEnd(Animation animation) {
             if (pageOpen) {
                 _binding_startPage.includedItem.page.setVisibility(View.GONE);
+                _binding_startPage.includedItem.blurLayout.setVisibility(View.GONE);
                 pageOpen = false;
             } else {
                 pageOpen = true;
@@ -123,16 +165,5 @@ public class StartActivity extends BaseActivity {
         public void onAnimationRepeat(Animation animation) {
 
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        myDialog = new MyDialog(this);
-        myDialog.show();
-    }
-
-    @Override
-    public void onExitConfirmed() {
-        exitApp();
     }
 }

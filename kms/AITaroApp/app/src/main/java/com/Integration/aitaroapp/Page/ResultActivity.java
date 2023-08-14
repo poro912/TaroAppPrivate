@@ -11,6 +11,7 @@ import com.Integration.aitaroapp.Page.Interface.CardSelectionListener;
 import com.Integration.aitaroapp.Page.Item.CardItem;
 import com.Integration.aitaroapp.R;
 import com.Integration.aitaroapp.databinding.ActivityResultBinding;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public class ResultActivity extends AppCompatActivity {
     private Intent get_data;
     private Intent move_activity;
     private ArrayList<Integer> result_card = new ArrayList<>();     //결과 카드들을 담을 ArrayList
+    private Snackbar snackbar = Snackbar.make(_binding_result_page.resultShare, "카카오톡 공유하기", 1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +75,12 @@ public class ResultActivity extends AppCompatActivity {
         return null;
     }
 
-    private void btnItem(){
+    private void btnItem() {
+       
         _binding_result_page.resultShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ResultActivity.this, "카카오톡 공유하기", Toast.LENGTH_SHORT).show();
+                snackbar.show();
             }
         });
 
@@ -91,11 +94,11 @@ public class ResultActivity extends AppCompatActivity {
         });
     }
 
-    private void cardValue(){
+    private void cardValue() {
         _binding_result_page.resultThreeCardInclude.resultThreePos1Card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            String list_value = result_card.get(0).toString();
+                String list_value = result_card.get(0).toString();
                 Toast.makeText(ResultActivity.this, list_value, Toast.LENGTH_SHORT).show();
 
             }

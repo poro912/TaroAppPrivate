@@ -26,7 +26,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
     private CardDrawAdapter cardDrawAdapter;
     private ArrayList<CardItem> draw_card_item = new ArrayList<>();
     private ArrayList<Integer> selectedCard = new ArrayList<>();
-    private Random r;
+    private Random random_card;
     private MyDialog myDialog;
     static long back_pressed_time = 0;
     Intent get_data;
@@ -43,7 +43,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         //어댑터 객체 생성
         cardDrawAdapter = new CardDrawAdapter(this, draw_card_item);
 
-        r = new Random();
+        random_card = new Random();
 
         init();
     }
@@ -73,7 +73,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
             CardItem draw_card = new CardItem();
             draw_card.setCard_item(R.drawable.backoftarocard);
             //카드값 int 랜덤 배정
-            draw_card.setSelected_num(r.nextInt(86) + 1);
+            draw_card.setSelected_num(random_card.nextInt(86) + 1);
             cardDrawAdapter.addItem(draw_card);
         }
     }
