@@ -5,12 +5,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 import android.os.Bundle;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.Integration.aitaroapp.Page.Adapter.CardDrawAdapter;
+import com.Integration.aitaroapp.Page.Dialog.BaseActivity;
 import com.Integration.aitaroapp.Page.Dialog.MyDialog;
 import com.Integration.aitaroapp.Page.Interface.CardSelectionListener;
+import com.Integration.aitaroapp.Page.Interface.ExitDialogListener;
 import com.Integration.aitaroapp.Page.Item.CardItem;
 import com.Integration.aitaroapp.R;
 import com.Integration.aitaroapp.databinding.ActivityMainBinding;
@@ -18,13 +21,14 @@ import com.Integration.aitaroapp.databinding.ActivityMainBinding;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements CardSelectionListener {
+public class MainActivity extends BaseActivity implements CardSelectionListener, ExitDialogListener.Finished {
     private ActivityMainBinding _binding_mainPage;
     private CardDrawAdapter cardDrawAdapter;
     private ArrayList<CardItem> draw_card_item = new ArrayList<>();
     private ArrayList<Integer> selectedCard = new ArrayList<>();
     private Random r;
     private MyDialog myDialog;
+    static long back_pressed_time = 0;
     Intent get_data;
     Intent move_result;
 
@@ -203,5 +207,17 @@ public class MainActivity extends AppCompatActivity implements CardSelectionList
                 _binding_mainPage.eightCardInclude.eightCardPos8Card.setImageResource(R.drawable.backoftarocard);
             }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        myDialog = new MyDialog(this);
+        myDialog.show();
+
+         myDialog.dialogBtn("back_pressed");
+    }
+    @Override
+    public void onFinishActivity() {
+        super.onFinishActivity();
     }
 }

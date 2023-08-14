@@ -14,6 +14,8 @@ import com.Integration.aitaroapp.databinding.ActivityResultBinding;
 
 import java.util.ArrayList;
 
+import static com.Integration.aitaroapp.Page.MainActivity.back_pressed_time;
+
 public class ResultActivity extends AppCompatActivity {
     private ActivityResultBinding _binding_result_page;
     private Intent get_data;
@@ -116,8 +118,12 @@ public class ResultActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        startActivity(move_activity);
-        finish();
-
+        if (System.currentTimeMillis() > back_pressed_time + 2000) {
+            back_pressed_time = System.currentTimeMillis();
+            Toast.makeText(this, "한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+        } else if (System.currentTimeMillis() <= back_pressed_time + 2000) {
+            startActivity(move_activity);
+            finish();
+        }
     }
 }
