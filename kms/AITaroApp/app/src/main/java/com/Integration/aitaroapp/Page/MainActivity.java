@@ -2,6 +2,8 @@ package com.Integration.aitaroapp.Page;
 
 import android.content.Intent;
 import android.media.Image;
+import android.opengl.Visibility;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,8 +26,8 @@ import java.util.Random;
 public class MainActivity extends BaseActivity implements CardSelectionListener, ExitDialogListener.Finished {
     private ActivityMainBinding _binding_mainPage;
     private CardDrawAdapter cardDrawAdapter;
-    private ArrayList<CardItem> draw_card_item = new ArrayList<>();
-    private ArrayList<Integer> selectedCard = new ArrayList<>();
+    private ArrayList<CardItem> draw_card_item = new ArrayList<>();     //리사이클러뷰 카드 아이템 연결
+    private ArrayList<Integer> selectedCard = new ArrayList<>();         //봅은 카드 계수
     private Random random_card;
     private MyDialog myDialog;
     static long back_pressed_time = 0;
@@ -54,6 +56,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         deckShuffle();
         intentViewPage();
         resultBtn();
+
     }
 
 
@@ -137,14 +140,16 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                 _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);//결과 버튼을 보이기
                 _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
             }
-                for (int i = 0; i < result_selected_card_size; i++) {
-                    viewId = getResources().getIdentifier("three_card_pos" + i, "id", getPackageName());
-                    image_item = _binding_mainPage.threeCardInclude.threeCardLayout.findViewById(viewId);
+            for (int i = 0; i < result_selected_card_size; i++) {
+                viewId = getResources().getIdentifier("three_card_pos" + i, "id", getPackageName());
+                image_item = _binding_mainPage.threeCardInclude.threeCardLayout.findViewById(viewId);
 
-                    if (image_item != null){
-                        image_item.setImageResource(R.drawable.back_taro_card);
-                    }
+                if (image_item != null) {
+                    image_item.setImageResource(R.drawable.back_taro_card);
+                }
             }
+
+            resetBtn(selectedCard);
         }
 
         if (get_data.hasExtra("five_card")) {
@@ -159,7 +164,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                 viewId = getResources().getIdentifier("five_card_pos" + i, "id", getPackageName());
                 image_item = _binding_mainPage.fiveCardInclude.fiveCardLayout.findViewById(viewId);
 
-                if (image_item != null){
+                if (image_item != null) {
                     image_item.setImageResource(R.drawable.back_taro_card);
                 }
             }
@@ -177,11 +182,45 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                 viewId = getResources().getIdentifier("eight_card_pos" + i, "id", getPackageName());
                 image_item = _binding_mainPage.eightCardInclude.eightCardLayout.findViewById(viewId);
 
-                if (image_item != null){
+                if (image_item != null) {
                     image_item.setImageResource(R.drawable.back_taro_card);
                 }
             }
 
+        }
+    }
+
+    public void resetBtn(ArrayList<Integer> resetArray) {
+        if (_binding_mainPage.taroCardSelectedRecyclerView.getVisibility() == View.GONE) {
+            _binding_mainPage.resetBtn.setVisibility(View.VISIBLE);
+
+            _binding_mainPage.resetBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    resetArray.removeAll(selectedCard);
+                    selectedCard.clear();
+                    Log.d("loglog", "reset: " + selectedCard);
+
+                    for (int i = 0; i < draw_card_item.size(); i++) {
+                        draw_card_item.get(i).setCard_item(R.drawable.back_taro_card);
+
+                    };
+                    cardDrawAdapter.notifyDataSetChanged();
+                    Log.d("loglog", "남은 카드 수" + String.valueOf(draw_card_item.size()));
+
+                    if (selectedCard.size() == 0) {
+                        _binding_mainPage.resetBtn.setVisibility(View.GONE);
+
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.VISIBLE);
+                            }
+                        }, 3000); //딜레이 타임 조절
+                    }
+                }
+            });
         }
     }
 
