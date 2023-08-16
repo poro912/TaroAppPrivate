@@ -3,26 +3,27 @@ package com.Integration.aitaroapp.Page;
 import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import com.Integration.aitaroapp.Page.Adapter.CardDrawAdapter;
-import com.Integration.aitaroapp.Page.Interface.CardSelectionListener;
-import com.Integration.aitaroapp.Page.Item.CardItem;
+import com.Integration.aitaroapp.Page.Dialog.BaseActivity;
+import com.Integration.aitaroapp.Page.Dialog.MyDialog;
+import com.Integration.aitaroapp.Page.Interface.ExitDialogListener;
 import com.Integration.aitaroapp.R;
 import com.Integration.aitaroapp.databinding.ActivityResultBinding;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
 import static com.Integration.aitaroapp.Page.MainActivity.back_pressed_time;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends BaseActivity implements ExitDialogListener.Finished {
     private ActivityResultBinding _binding_result_page;
     private Intent get_data;
-    private Intent move_activity;
     private ArrayList<Integer> result_card = new ArrayList<>();     //결과 카드들을 담을 ArrayList
-    private Snackbar snackbar = Snackbar.make(_binding_result_page.resultShare, "카카오톡 공유하기", 1);
+    private MyDialog myDialog;
+    private boolean is_front = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,6 @@ public class ResultActivity extends AppCompatActivity {
         setContentView(_binding_result_page.getRoot());
 
         get_data = getIntent();
-        move_activity = new Intent(ResultActivity.this, StartActivity.class);
 
         init();
     }
@@ -40,6 +40,7 @@ public class ResultActivity extends AppCompatActivity {
         handleReceivedArrayList();
         btnItem();
         cardValue();
+        cardClickAnim(_binding_result_page.resultThreeCardInclude.resultThreePos1Card);
     }
 
 
@@ -80,17 +81,20 @@ public class ResultActivity extends AppCompatActivity {
         _binding_result_page.resultShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                snackbar.show();
+                Toast.makeText(ResultActivity.this, "카카오톡 공유하기", Toast.LENGTH_SHORT).show();
             }
         });
 
         _binding_result_page.mainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                myDialog = new MyDialog(ResultActivity.this);
+                myDialog.show();
+                myDialog.dialogBtn("back_pressed");
 
-                startActivity(move_activity);
-                finish();
             }
+
+
         });
     }
 
@@ -119,14 +123,37 @@ public class ResultActivity extends AppCompatActivity {
         });
     }
 
+    private void cardClickAnim(View view){
+        Animation flipAnimation = AnimationUtils.loadAnimation(this, R.anim.card_anim_reverse);
+
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view.startAnimation(flipAnimation);
+
+                if (is_front){
+                    view.setBackgroundResource(R.drawable.back_taro_card);
+                }else {
+                    view.setBackgroundResource(R.drawable.back_taro_card);
+                }
+                is_front = false;
+            }
+        });
+
+    }
+
     @Override
     public void onBackPressed() {
         if (System.currentTimeMillis() > back_pressed_time + 2000) {
             back_pressed_time = System.currentTimeMillis();
-            Toast.makeText(this, "한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "메인화면으로 돌아갈까요?", Toast.LENGTH_SHORT).show();
         } else if (System.currentTimeMillis() <= back_pressed_time + 2000) {
-            startActivity(move_activity);
             finish();
         }
+    }
+
+    @Override
+    public void onFinishActivity() {
+        super.onFinishActivity();
     }
 }
