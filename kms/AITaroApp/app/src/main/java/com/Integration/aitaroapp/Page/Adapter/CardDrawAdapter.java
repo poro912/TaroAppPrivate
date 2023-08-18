@@ -20,8 +20,6 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCardHolder> {
-
-
     private ArrayList<CardItem> drawcardItems = new ArrayList<>();  //카드 정보 어레이리스트
     private ArrayList<SelectedCardItem> card_item = new ArrayList<>();
     private ArrayList<Integer> resultCard = new ArrayList<>();         //뽑은 카드 값 어레이리스트
@@ -76,6 +74,7 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
     private void removeCard(int position) {
         if (position >= 0 && position < drawcardItems.size()) {
             CardItem removed_card = drawcardItems.get(position);
+
             remove_card_items.add(removed_card);
             drawcardItems.remove(position);
             notifyItemRemoved(position);
@@ -87,12 +86,20 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
             if (cardSelectionListener != null) {
                 cardSelectionListener.onCardSelected(removed_card, resultCard);
             }
+
+            //리셋버튼 클릭 시 기존 삭제 된 카드 다시 복구
+
         }
     }
 
-    public void shuffleCards() {
-        Collections.shuffle(drawcardItems);
-        notifyDataSetChanged();
+    public void restoreRemovedCards() {
+        for (CardItem removedCard : remove_card_items) {
+            drawcardItems.add(removedCard);
+            // 선택된 카드 목록에서도 삭제된 카드를 제거
+            resultCard.remove((Integer) removedCard.getSelected_num());
+        }
+        remove_card_items.clear(); // 삭제된 카드 목록 초기화
+        notifyDataSetChanged(); // 리사이클러뷰 업데이트
     }
 
     public void addItem(CardItem item) {

@@ -21,15 +21,17 @@ import com.Integration.aitaroapp.R;
 import com.Integration.aitaroapp.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class MainActivity extends BaseActivity implements CardSelectionListener, ExitDialogListener.Finished {
     private ActivityMainBinding _binding_mainPage;
     private CardDrawAdapter cardDrawAdapter;
     private ArrayList<CardItem> draw_card_item = new ArrayList<>();     //리사이클러뷰 카드 아이템 연결
-    private ArrayList<Integer> selectedCard = new ArrayList<>();         //봅은 카드 계수
+    static ArrayList<Integer> selectedCard = new ArrayList<>();         //봅은 카드 계수
     private Random random_card;
     private MyDialog myDialog;
+    private ArrayList<CardItem> original_card_pack = new ArrayList<>();
     static long back_pressed_time = 0;
 
     Intent get_data;
@@ -50,12 +52,14 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         //어댑터 객체 생성
         cardDrawAdapter = new CardDrawAdapter(this, draw_card_item);
         random_card = new Random();
+        original_card_pack.addAll(draw_card_item);
 
         drawCardItem();
         getDrawCard();
         deckShuffle();
         intentViewPage();
         resultBtn();
+        resetBtn();
 
     }
 
@@ -85,18 +89,25 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         _binding_mainPage.suffleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "셔플", Toast.LENGTH_SHORT).show();
-                shuffleCards();
-                Log.d("loglog", "셔플" + cardDrawAdapter.getItemCount());
-                Log.d("loglog", "셔플" + draw_card_item);
+                shuffleCardsWithAnimation();
             }
         });
     }
+    private void shuffleCardsWithAnimation() {
+        ArrayList<CardItem> shuffledItems = new ArrayList<>(draw_card_item);
+        Collections.shuffle(shuffledItems);
 
-    private void shuffleCards() {
-        cardDrawAdapter.shuffleCards();
+        for (int i = 0; i < draw_card_item.size(); i++) {
+            draw_card_item.set(i, shuffledItems.get(i));
+            Log.d("loglog", "셔플" + draw_card_item.get(i));
+            cardDrawAdapter.notifyDataSetChanged();
+        }
+
+        Toast.makeText(MainActivity.this, "셔플", Toast.LENGTH_SHORT).show();
+        Log.d("loglog", "셔플 후 카드 개수: " + cardDrawAdapter.getItemCount());
+        Log.d("loglog", "셔플 후 카드 아이템: " + draw_card_item.toString());
+
     }
-
 
     private void intentViewPage() {
         if (get_data.hasExtra("three_card")) {
@@ -127,6 +138,29 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         });
     }
 
+    private void resetBtn() {
+        int totalCardCount = cardDrawAdapter.getItemCount();
+        Log.d("loglog", "기존 남은 카드 수" + String.valueOf(draw_card_item.size()));
+        Log.d("loglog", "기존 남은 카드 수 배열" + String.valueOf(draw_card_item.size()));
+        _binding_mainPage.resetBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("loglog", "기존 선택된 카드 수 배열" + String.valueOf(selectedCard.size()));
+                Log.d("loglog", "기존 남은 카드 수 배열" + String.valueOf(draw_card_item.size()));
+
+                draw_card_item.get(selectedCard.size());
+                selectedCard.clear();
+                cardDrawAdapter.restoreRemovedCards();
+                cardDrawAdapter.notifyDataSetChanged();
+
+                _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.VISIBLE);
+                Log.d("loglog", "리셋 버튼 후 남은 카드 수" + String.valueOf(draw_card_item.size()));
+                Log.d("loglog", "리셋 선택된 카드 수" + String.valueOf(selectedCard.size()));
+                Log.d("loglog", "총 카드 수 " + totalCardCount);
+            }
+        });
+    }
+
     @Override
     public void onCardSelected(CardItem cardItem, ArrayList<Integer> cardDrawn) {
         this.selectedCard = cardDrawn;
@@ -148,8 +182,6 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                     image_item.setImageResource(R.drawable.back_taro_card);
                 }
             }
-
-            resetBtn(selectedCard);
         }
 
         if (get_data.hasExtra("five_card")) {
@@ -187,40 +219,6 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                 }
             }
 
-        }
-    }
-
-    public void resetBtn(ArrayList<Integer> resetArray) {
-        if (_binding_mainPage.taroCardSelectedRecyclerView.getVisibility() == View.GONE) {
-            _binding_mainPage.resetBtn.setVisibility(View.VISIBLE);
-
-            _binding_mainPage.resetBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    resetArray.removeAll(selectedCard);
-                    selectedCard.clear();
-                    Log.d("loglog", "reset: " + selectedCard);
-
-                    for (int i = 0; i < draw_card_item.size(); i++) {
-                        draw_card_item.get(i).setCard_item(R.drawable.back_taro_card);
-
-                    };
-                    cardDrawAdapter.notifyDataSetChanged();
-                    Log.d("loglog", "남은 카드 수" + String.valueOf(draw_card_item.size()));
-
-                    if (selectedCard.size() == 0) {
-                        _binding_mainPage.resetBtn.setVisibility(View.GONE);
-
-                        Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.VISIBLE);
-                            }
-                        }, 3000); //딜레이 타임 조절
-                    }
-                }
-            });
         }
     }
 
