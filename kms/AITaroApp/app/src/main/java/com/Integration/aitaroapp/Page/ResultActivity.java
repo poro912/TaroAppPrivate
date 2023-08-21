@@ -7,15 +7,12 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 import android.os.Bundle;
-import com.Integration.aitaroapp.Page.Dialog.BaseActivity;
 import com.Integration.aitaroapp.Page.Dialog.MyDialog;
 import com.Integration.aitaroapp.Page.Interface.ExitDialogListener;
 import com.Integration.aitaroapp.R;
 import com.Integration.aitaroapp.databinding.ActivityResultBinding;
 
 import java.util.ArrayList;
-
-import static com.Integration.aitaroapp.Page.MainActivity.back_pressed_time;
 
 public class ResultActivity extends BaseActivity implements ExitDialogListener.Finished {
     private ActivityResultBinding _binding_result_page;
@@ -144,12 +141,7 @@ public class ResultActivity extends BaseActivity implements ExitDialogListener.F
 
     @Override
     public void onBackPressed() {
-        if (System.currentTimeMillis() > back_pressed_time + 2000) {
-            back_pressed_time = System.currentTimeMillis();
-            Toast.makeText(this, "메인화면으로 돌아갈까요?", Toast.LENGTH_SHORT).show();
-        } else if (System.currentTimeMillis() <= back_pressed_time + 2000) {
-            finish();
-        }
+        programExit();
     }
 
     @Override

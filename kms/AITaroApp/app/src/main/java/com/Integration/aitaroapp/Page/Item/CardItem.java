@@ -1,5 +1,8 @@
 package com.Integration.aitaroapp.Page.Item;
 
+import androidx.annotation.NonNull;
+import org.jetbrains.annotations.NotNull;
+
 public class CardItem {
     private int card_item;
     private int selected_num;
@@ -30,4 +33,13 @@ public class CardItem {
     }
 
 
+    @NonNull
+    @NotNull
+    @Override
+    public String toString() {
+        return "CardItem{" +
+                "card_item=" + card_item +
+                ", selected_num=" + selected_num +
+                '}';
+    }
 }

@@ -1,17 +1,13 @@
 package com.Integration.aitaroapp.Page;
 
-import android.annotation.SuppressLint;
-import android.opengl.Visibility;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.Integration.aitaroapp.Page.Adapter.GameSelectedRecyclerViewAdapter;
 import com.Integration.aitaroapp.Page.Adapter.StoreSettingAdapter;
-import com.Integration.aitaroapp.Page.Dialog.BaseActivity;
 import com.Integration.aitaroapp.Page.Dialog.MyDialog;
 import com.Integration.aitaroapp.Page.Item.MainBtnSelected;
 import com.Integration.aitaroapp.Page.Item.StoreRecyclerViewItem;

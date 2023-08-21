@@ -1,9 +1,6 @@
 package com.Integration.aitaroapp.Page;
 
 import android.content.Intent;
-import android.media.Image;
-import android.opengl.Visibility;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -12,7 +9,6 @@ import android.os.Bundle;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.Integration.aitaroapp.Page.Adapter.CardDrawAdapter;
-import com.Integration.aitaroapp.Page.Dialog.BaseActivity;
 import com.Integration.aitaroapp.Page.Dialog.MyDialog;
 import com.Integration.aitaroapp.Page.Interface.CardSelectionListener;
 import com.Integration.aitaroapp.Page.Interface.ExitDialogListener;
@@ -32,8 +28,6 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
     private Random random_card;
     private MyDialog myDialog;
     private ArrayList<CardItem> original_card_pack = new ArrayList<>();
-    static long back_pressed_time = 0;
-
     Intent get_data;
     Intent move_result;
 
@@ -89,19 +83,20 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         _binding_mainPage.suffleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                shuffleCardsWithAnimation();
+                shuffleCards();
             }
         });
     }
-    private void shuffleCardsWithAnimation() {
+    private void shuffleCards() {
         ArrayList<CardItem> shuffledItems = new ArrayList<>(draw_card_item);
         Collections.shuffle(shuffledItems);
 
         for (int i = 0; i < draw_card_item.size(); i++) {
             draw_card_item.set(i, shuffledItems.get(i));
             Log.d("loglog", "셔플" + draw_card_item.get(i));
-            cardDrawAdapter.notifyDataSetChanged();
         }
+
+        cardDrawAdapter.notifyDataSetChanged();
 
         Toast.makeText(MainActivity.this, "셔플", Toast.LENGTH_SHORT).show();
         Log.d("loglog", "셔플 후 카드 개수: " + cardDrawAdapter.getItemCount());
@@ -206,7 +201,6 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
             Log.d("loglog", "selected Cards: " + selectedCard.toString());
             if (result_selected_card_size == 8) {
                 _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);
-
                 _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
             }
 

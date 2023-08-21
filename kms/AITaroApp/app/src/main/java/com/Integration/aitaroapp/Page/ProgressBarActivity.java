@@ -8,9 +8,7 @@ import android.os.Bundle;
 import com.Integration.aitaroapp.Page.Dialog.MyDialog;
 import com.Integration.aitaroapp.databinding.ActivityProgressBarBinding;
 
-import static com.Integration.aitaroapp.Page.MainActivity.back_pressed_time;
-
-public class ProgressBarActivity extends AppCompatActivity {
+public class ProgressBarActivity extends BaseActivity {
     private ActivityProgressBarBinding _binding_progress;
     private Intent intent;
 
@@ -40,12 +38,7 @@ public class ProgressBarActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (System.currentTimeMillis() > back_pressed_time + 2000) {
-            back_pressed_time = System.currentTimeMillis();
-            Toast.makeText(this, "한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
-        } else if (System.currentTimeMillis() <= back_pressed_time + 2000) {
-            finishAffinity();
-        }
+       programExit();
 
     }
 
