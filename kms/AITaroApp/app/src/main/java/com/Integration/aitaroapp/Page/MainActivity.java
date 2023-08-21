@@ -1,6 +1,7 @@
 package com.Integration.aitaroapp.Page;
 
 import android.content.Intent;
+import android.media.Image;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -30,6 +31,8 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
     private ArrayList<CardItem> original_card_pack = new ArrayList<>();
     Intent get_data;
     Intent move_result;
+    private int viewId;
+    private ImageView image_item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +90,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
             }
         });
     }
+
     private void shuffleCards() {
         ArrayList<CardItem> shuffledItems = new ArrayList<>(draw_card_item);
         Collections.shuffle(shuffledItems);
@@ -143,6 +147,39 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                 Log.d("loglog", "기존 선택된 카드 수 배열" + String.valueOf(selectedCard.size()));
                 Log.d("loglog", "기존 남은 카드 수 배열" + String.valueOf(draw_card_item.size()));
 
+                if (get_data.hasExtra("three_card")) {
+                    for (int i = 0; i < selectedCard.size(); i++) {
+                        viewId = getResources().getIdentifier("three_card_pos" + i, "id", getPackageName());
+                        image_item = _binding_mainPage.threeCardInclude.threeCardLayout.findViewById(viewId);
+
+                        if (image_item != null) {
+                            image_item.setImageResource(R.drawable.card_result_img);
+                        }
+                    }
+                }
+
+                if (get_data.hasExtra("five_card")){
+                    for (int i = 0; i < selectedCard.size(); i++) {
+                        viewId = getResources().getIdentifier("five_card_pos" + i, "id", getPackageName());
+                        image_item = _binding_mainPage.fiveCardInclude.fiveCardLayout.findViewById(viewId);
+
+                        if (image_item != null) {
+                            image_item.setImageResource(R.drawable.card_result_img);
+                        }
+                    }
+                }
+
+                if (get_data.hasExtra("eight_card")){
+                    for (int i = 0; i < selectedCard.size(); i++) {
+                        viewId = getResources().getIdentifier("eight_card_pos" + i, "id", getPackageName());
+                        image_item = _binding_mainPage.eightCardInclude.eightCardLayout.findViewById(viewId);
+
+                        if (image_item != null) {
+                            image_item.setImageResource(R.drawable.card_result_img);
+                        }
+                    }
+                }
+
                 draw_card_item.get(selectedCard.size());
                 selectedCard.clear();
                 cardDrawAdapter.restoreRemovedCards();
@@ -152,6 +189,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                 Log.d("loglog", "리셋 버튼 후 남은 카드 수" + String.valueOf(draw_card_item.size()));
                 Log.d("loglog", "리셋 선택된 카드 수" + String.valueOf(selectedCard.size()));
                 Log.d("loglog", "총 카드 수 " + totalCardCount);
+
             }
         });
     }
@@ -160,8 +198,6 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
     public void onCardSelected(CardItem cardItem, ArrayList<Integer> cardDrawn) {
         this.selectedCard = cardDrawn;
         int result_selected_card_size = selectedCard.size();
-        int viewId;
-        ImageView image_item;
 
         if (get_data.hasExtra("three_card")) {
             Log.d("loglog", "selected Cards: " + selectedCard.toString());
@@ -169,6 +205,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                 _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);//결과 버튼을 보이기
                 _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
             }
+
             for (int i = 0; i < result_selected_card_size; i++) {
                 viewId = getResources().getIdentifier("three_card_pos" + i, "id", getPackageName());
                 image_item = _binding_mainPage.threeCardInclude.threeCardLayout.findViewById(viewId);
