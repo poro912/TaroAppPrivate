@@ -54,8 +54,6 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
         holder.back_of_taro_card.setImageResource(cardItem.getCard_item());
         int cardNumber = cardItem.getSelected_num();
         Log.d("CardDrawAdapter", "Card Number: " + cardNumber);
-        //쓰레기
-        /* rotation(holder);*/
 
         holder.back_of_taro_card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +70,7 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
     }
 
     private void removeCard(int position) {
+        //카드를 뽑은 후 빈공간 클릭시 앱종료되는 문제 해결
         if (position >= 0 && position < drawcardItems.size()) {
             CardItem removed_card = drawcardItems.get(position);
 
@@ -86,9 +85,6 @@ public class CardDrawAdapter extends RecyclerView.Adapter<CardDrawAdapter.DrawCa
             if (cardSelectionListener != null) {
                 cardSelectionListener.onCardSelected(removed_card, resultCard);
             }
-
-            //리셋버튼 클릭 시 기존 삭제 된 카드 다시 복구
-
         }
     }
 

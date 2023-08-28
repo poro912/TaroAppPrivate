@@ -24,15 +24,15 @@ import java.util.Random;
 public class MainActivity extends BaseActivity implements CardSelectionListener, ExitDialogListener.Finished {
     private ActivityMainBinding _binding_mainPage;
     private CardDrawAdapter cardDrawAdapter;
-    private ArrayList<CardItem> draw_card_item = new ArrayList<>();     //리사이클러뷰 카드 아이템 연결
-    static ArrayList<Integer> selectedCard = new ArrayList<>();         //봅은 카드 계수
+    private ArrayList<CardItem> draw_card_item = new ArrayList<>();     //리사이클러뷰 타로카드 뒷면 장수
+    static ArrayList<Integer> selectedCard = new ArrayList<>();         //뽑은 카드 계수
     private Random random_card;
     private MyDialog myDialog;
-    private ArrayList<CardItem> original_card_pack = new ArrayList<>();
-    Intent get_data;
-    Intent move_result;
-    private int viewId;
-    private ImageView image_item;
+    static final private int CARD_NUMBER = 78;      //타로카드 장수 고정
+    Intent get_data;            //인텐트로 게임 별 타로카드 장수 가져오기
+    Intent move_result;       //뽑은 카드값 넘겨주기
+    private int viewId;        //getResources().getIdentifier()
+    private ImageView image_item;       //카드 뒷면 이미지 변경
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +49,11 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         //어댑터 객체 생성
         cardDrawAdapter = new CardDrawAdapter(this, draw_card_item);
         random_card = new Random();
-        original_card_pack.addAll(draw_card_item);
 
-        drawCardItem();
-        getDrawCard();
-        deckShuffle();
-        intentViewPage();
+        drawCardItem();     //타로카드 장수 리사이클러뷰 연결
+        getDrawCard();      //타로카드 관련 이미지, 랜덤 값 배열생성
+        deckShuffle();       //카드 셔플
+        intentViewPage();   //인텐트로 게임 종류 가져옴
         resultBtn();
         resetBtn();
 
@@ -73,11 +72,17 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
     }
 
     private void getDrawCard() {
-        for (int i = 0; i < 86; i++) {
+        for (int i = 0; i < CARD_NUMBER; i++) {
             CardItem draw_card = new CardItem();
             draw_card.setCard_item(R.drawable.back_taro_card);
-            //카드값 int 랜덤 배정
-            draw_card.setSelected_num(random_card.nextInt(86) + 1);
+
+            String imageName = "taro_" + i;
+            int viewId = getResources().getIdentifier(imageName, "drawable", getPackageName());
+            draw_card.setCard_value(viewId);
+            Log.d("loglog", imageName + ": " + viewId);
+
+            // 카드값 int 랜덤 배정
+            draw_card.setSelected_num(random_card.nextInt(77) + 1);
             cardDrawAdapter.addItem(draw_card);
         }
     }
@@ -98,6 +103,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         for (int i = 0; i < draw_card_item.size(); i++) {
             draw_card_item.set(i, shuffledItems.get(i));
             Log.d("loglog", "셔플" + draw_card_item.get(i));
+
         }
 
         cardDrawAdapter.notifyDataSetChanged();
@@ -158,7 +164,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                     }
                 }
 
-                if (get_data.hasExtra("five_card")){
+                if (get_data.hasExtra("five_card")) {
                     for (int i = 0; i < selectedCard.size(); i++) {
                         viewId = getResources().getIdentifier("five_card_pos" + i, "id", getPackageName());
                         image_item = _binding_mainPage.fiveCardInclude.fiveCardLayout.findViewById(viewId);
@@ -169,7 +175,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                     }
                 }
 
-                if (get_data.hasExtra("eight_card")){
+                if (get_data.hasExtra("eight_card")) {
                     for (int i = 0; i < selectedCard.size(); i++) {
                         viewId = getResources().getIdentifier("eight_card_pos" + i, "id", getPackageName());
                         image_item = _binding_mainPage.eightCardInclude.eightCardLayout.findViewById(viewId);
@@ -190,8 +196,21 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                 Log.d("loglog", "리셋 선택된 카드 수" + String.valueOf(selectedCard.size()));
                 Log.d("loglog", "총 카드 수 " + totalCardCount);
 
+                _binding_mainPage.resultBtn.setVisibility(View.GONE);
+
             }
         });
+    }
+
+    private void visibilityItem() {
+        _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);//결과 버튼을 보이기
+        _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
+    }
+
+    private void cardExpectedOver(int expectedCardCount){
+        if (expectedCardCount < selectedCard.size()){
+            selectedCard.remove(selectedCard.size() - 1);
+        }
     }
 
     @Override
@@ -201,10 +220,12 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
 
         if (get_data.hasExtra("three_card")) {
             Log.d("loglog", "selected Cards: " + selectedCard.toString());
+
             if (result_selected_card_size == 3) {     //뽑은 카드ArrayList의 사이즈가 3이면
-                _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);//결과 버튼을 보이기
-                _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
+               visibilityItem();
             }
+
+            cardExpectedOver(3);
 
             for (int i = 0; i < result_selected_card_size; i++) {
                 viewId = getResources().getIdentifier("three_card_pos" + i, "id", getPackageName());
@@ -220,9 +241,10 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
             Log.d("loglog", "selected Cards: " + selectedCard.toString());
 
             if (result_selected_card_size == 5) {     //뽑은 카드ArrayList의 사이즈가 5이면
-                _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);        //결과 버튼을 보이기
-                _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
+                visibilityItem();
             }
+
+            cardExpectedOver(5);
 
             for (int i = 0; i < result_selected_card_size; i++) {
                 viewId = getResources().getIdentifier("five_card_pos" + i, "id", getPackageName());
@@ -232,14 +254,17 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                     image_item.setImageResource(R.drawable.back_taro_card);
                 }
             }
+
+
         }
 
         if (get_data.hasExtra("eight_card")) {
             Log.d("loglog", "selected Cards: " + selectedCard.toString());
             if (result_selected_card_size == 8) {
-                _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);
-                _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);
+                visibilityItem();
             }
+
+            cardExpectedOver(8);
 
             for (int i = 0; i < result_selected_card_size; i++) {
                 viewId = getResources().getIdentifier("eight_card_pos" + i, "id", getPackageName());
@@ -249,8 +274,9 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
                     image_item.setImageResource(R.drawable.back_taro_card);
                 }
             }
-
         }
+
+
     }
 
     @Override

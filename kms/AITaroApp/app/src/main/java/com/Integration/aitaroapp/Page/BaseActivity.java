@@ -9,7 +9,7 @@ import com.Integration.aitaroapp.Page.Interface.ExitDialogListener;
 import com.Integration.aitaroapp.Page.StartActivity;
 
 public class BaseActivity extends AppCompatActivity implements ExitDialogListener,ExitDialogListener.Finished {
-    long back_pressed_time = 0;
+    private long back_pressed_time = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
