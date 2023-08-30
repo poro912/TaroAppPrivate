@@ -80,10 +80,10 @@ public class StartActivity extends BaseActivity {
     }
 
     private void backGroundTouchLayout() {
-        _binding_startPage.includedItem.blurLayout.setOnTouchListener(new View.OnTouchListener() {
+        _binding_startPage.includedItem.blurLayout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return true; // 터치 이벤트가 다른 곳으로 전달되도록 함
+            public void onClick(View v) {
+              backPressedAnim();
             }
         });
     }
@@ -98,19 +98,18 @@ public class StartActivity extends BaseActivity {
         _binding_startPage.includedItem.storeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pageOpen) {
+                if (pageOpen) {     //pageOpen = false
                     _binding_startPage.includedItem.page.startAnimation(left_anim);
                     _binding_startPage.includedItem.storeBtn.startAnimation(left_anim);
-                } else {
-                    _binding_startPage.includedItem.page.setVisibility(View.VISIBLE);
-                    _binding_startPage.includedItem.blurLayout.setVisibility(View.VISIBLE);
+                } else {              //pageOpen = true 일 때 오른쪽으로 튀어나옴
                     _binding_startPage.includedItem.page.startAnimation(right_anim);
                     _binding_startPage.includedItem.storeBtn.startAnimation(right_anim);
+                    _binding_startPage.includedItem.page.setVisibility(View.VISIBLE);
+                    _binding_startPage.includedItem.blurLayout.setVisibility(View.VISIBLE);
                 }
             }
         });
     }
-
 
     private void backPressedAnim() {
         left_anim = AnimationUtils.loadAnimation(StartActivity.this, R.anim.setting_anime_left);

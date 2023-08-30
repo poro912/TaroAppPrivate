@@ -35,7 +35,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/page"
             android:orientation="vertical"
-            android:background="#4CAF50"
+            android:background="@color/deepPurple"
             android:visibility="gone"
             android:layout_width="200dp"
             android:layout_height="0dp"
@@ -47,9 +47,10 @@
 
         <TextView
                 android:id="@+id/exText"
-                android:textColor="#FFFFFF"
-                android:text="예시 페이지"
-                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:text="상점 페이지(ex)"
+                android:textSize="30sp"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"

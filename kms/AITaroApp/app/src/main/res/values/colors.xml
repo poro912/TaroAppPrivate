@@ -12,4 +12,5 @@
     <color name="gray">#666a73</color>
     <color name="yellow">#FFFF00</color>
     <color name="background_alpha">#000000</color>
+    <color name="deepPurple">#33215B</color>
 </resources>
