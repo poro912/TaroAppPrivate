@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.os.Bundle;
 import com.Integration.aitaroapp.Page.Dialog.MyDialog;
@@ -20,6 +21,8 @@ public class ResultActivity extends BaseActivity implements ExitDialogListener.F
     private ArrayList<Integer> result_card = new ArrayList<>();     //결과 카드들을 담을 ArrayList
     private MyDialog myDialog;
     private boolean is_front = false;
+    private static final String draw_card_image = "taro_";
+    private ImageView result_card_item;
 
 
     @Override
@@ -37,7 +40,6 @@ public class ResultActivity extends BaseActivity implements ExitDialogListener.F
         handleReceivedArrayList();
         btnItem();
         cardValue();
-        cardClickAnim(_binding_result_page.resultThreeCardInclude.resultThreePos1Card);
     }
 
 
@@ -74,7 +76,6 @@ public class ResultActivity extends BaseActivity implements ExitDialogListener.F
     }
 
     private void btnItem() {
-       
         _binding_result_page.resultShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,22 +97,39 @@ public class ResultActivity extends BaseActivity implements ExitDialogListener.F
     }
 
     private void cardValue() {
-        _binding_result_page.resultThreeCardInclude.resultThreePos1Card.setOnClickListener(new View.OnClickListener() {
+      /*  for (int i = 0; i < 3; i++){
+            final int index = i;
+            int asd = getResources().getIdentifier("resultThreePos" + i, "id", getPackageName());
+            View cardView = findViewById(asd);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (index < result_card.size()){
+                        int cardValue = result_card.get(index);
+                        showCardImage(cardValue);
+
+                    }
+                }
+            });
+        }*/
+
+        _binding_result_page.resultThreeCardInclude.resultThreePos0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String list_value = result_card.get(0).toString();
                 Toast.makeText(ResultActivity.this, list_value, Toast.LENGTH_SHORT).show();
-
+                showCardImage(result_card.get(0));
             }
         });
-        _binding_result_page.resultThreeCardInclude.resultThreePos2Card.setOnClickListener(new View.OnClickListener() {
+        _binding_result_page.resultThreeCardInclude.resultThreePos1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String list_value = result_card.get(1).toString();
                 Toast.makeText(ResultActivity.this, list_value, Toast.LENGTH_SHORT).show();
             }
         });
-        _binding_result_page.resultThreeCardInclude.resultThreePos3Card.setOnClickListener(new View.OnClickListener() {
+        _binding_result_page.resultThreeCardInclude.resultThreePos2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String list_value = result_card.get(2).toString();
@@ -120,25 +138,15 @@ public class ResultActivity extends BaseActivity implements ExitDialogListener.F
         });
     }
 
-    private void cardClickAnim(View view){
-        Animation flipAnimation = AnimationUtils.loadAnimation(this, R.anim.card_anim_reverse);
+    private void showCardImage(int value){
+        //카드 이미지 번호 가져오기
+       String cardValue = draw_card_image + value;
 
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                view.startAnimation(flipAnimation);
-
-                if (is_front){
-                    view.setBackgroundResource(R.drawable.back_taro_card);
-                }else {
-                    view.setBackgroundResource(R.drawable.back_taro_card);
-                }
-                is_front = false;
-            }
-        });
-
+       int resource_id = getResources().getIdentifier(cardValue, "drawable", getPackageName());
+        if (resource_id != 0) {
+            _binding_result_page.resultThreeCardInclude.resultThreePos0.setImageResource(resource_id);
+        }
     }
-
     @Override
     public void onBackPressed() {
         programExit();

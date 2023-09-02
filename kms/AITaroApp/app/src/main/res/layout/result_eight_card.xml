@@ -8,7 +8,7 @@
         android:visibility="gone">
 
     <ImageView
-            android:id="@+id/result_eight_pos1_card"
+            android:id="@+id/result_eight_pos0"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/back_taro_card"
@@ -19,7 +19,7 @@
             app:layout_constraintVertical_bias="0.1"/>
 
     <ImageView
-            android:id="@+id/result_eight_pos2_card"
+            android:id="@+id/result_eight_pos1"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/back_taro_card"
@@ -31,7 +31,7 @@
             app:layout_constraintHorizontal_bias="0.32"/>
 
     <ImageView
-            android:id="@+id/result_eight_pos3_card"
+            android:id="@+id/result_eight_pos2"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/back_taro_card"
@@ -43,7 +43,7 @@
             app:layout_constraintHorizontal_bias="0.64"/>
 
     <ImageView
-            android:id="@+id/result_eight_pos4_card"
+            android:id="@+id/result_eight_pos3"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/back_taro_card"
@@ -55,7 +55,7 @@
             app:layout_constraintHorizontal_bias="0.1"/>
 
     <ImageView
-            android:id="@+id/result_eight_pos5_card"
+            android:id="@+id/result_eight_pos4"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/back_taro_card"
@@ -67,7 +67,7 @@
             app:layout_constraintHorizontal_bias="0.9"/>
 
     <ImageView
-            android:id="@+id/result_eight_pos6_card"
+            android:id="@+id/result_eight_pos5"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/back_taro_card"
@@ -79,7 +79,7 @@
             app:layout_constraintHorizontal_bias="0.1"/>
 
     <ImageView
-            android:id="@+id/result_eight_pos7_card"
+            android:id="@+id/result_eight_pos6"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/back_taro_card"
@@ -91,7 +91,7 @@
             app:layout_constraintHorizontal_bias="0.9"/>
 
     <ImageView
-            android:id="@+id/result_eight_pos8_card"
+            android:id="@+id/result_eight_pos7"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/back_taro_card"

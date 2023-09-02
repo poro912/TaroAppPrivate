@@ -8,7 +8,7 @@
         android:visibility="gone">
 
     <ImageView
-            android:id="@+id/result_three_pos1_card"
+            android:id="@+id/result_three_pos0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/back_taro_card"
@@ -19,7 +19,7 @@
             app:layout_constraintVertical_bias="0.1"/>
 
     <ImageView
-            android:id="@+id/result_three_pos2_card"
+            android:id="@+id/result_three_pos1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/back_taro_card"
@@ -31,7 +31,7 @@
     app:layout_constraintHorizontal_bias="0.2"/>
 
     <ImageView
-            android:id="@+id/result_three_pos3_card"
+            android:id="@+id/result_three_pos2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/back_taro_card"

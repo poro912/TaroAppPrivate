@@ -8,7 +8,7 @@
         android:visibility="gone">
 
     <ImageView
-            android:id="@+id/result_five_pos1_card"
+            android:id="@+id/result_five_pos0"
             android:layout_width="100dp"
             android:layout_height="200dp"
             android:background="@drawable/back_taro_card"
@@ -19,7 +19,7 @@
             app:layout_constraintVertical_bias="0.1"/>
 
     <ImageView
-            android:id="@+id/result_five_pos2_card"
+            android:id="@+id/result_five_pos1"
             android:layout_width="100dp"
             android:layout_height="200dp"
             android:background="@drawable/back_taro_card"
@@ -31,7 +31,7 @@
             app:layout_constraintHorizontal_bias="0.1"/>
 
     <ImageView
-            android:id="@+id/result_five_pos3_card"
+            android:id="@+id/result_five_pos2"
             android:layout_width="100dp"
             android:layout_height="200dp"
             android:background="@drawable/back_taro_card"
@@ -43,7 +43,7 @@
             app:layout_constraintHorizontal_bias="0.9"/>
 
     <ImageView
-            android:id="@+id/result_five_pos4_card"
+            android:id="@+id/result_five_pos3"
             android:layout_width="100dp"
             android:layout_height="200dp"
             android:background="@drawable/back_taro_card"
@@ -55,7 +55,7 @@
             app:layout_constraintHorizontal_bias="0.25"/>
 
     <ImageView
-            android:id="@+id/result_five_pos5_card"
+            android:id="@+id/result_five_pos4"
             android:layout_width="100dp"
             android:layout_height="200dp"
             android:background="@drawable/back_taro_card"

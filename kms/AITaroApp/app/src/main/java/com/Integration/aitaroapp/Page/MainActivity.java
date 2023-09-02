@@ -89,13 +89,11 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
 
             overlap_num.add(random_num);
 
-            /*
             String imageName = "taro_" + i;
             int viewId = getResources().getIdentifier(imageName, "drawable", getPackageName());
             draw_card.setCard_value(viewId);
-            Log.d("loglog", "카드 이미지 이름 및 숫자: " + imageName + ", 리소스 ID: " + viewId);
+            Log.d("loglog", "카드 이미지 이름 및 숫자: " + imageName + ", 타로카드 이미지 ID: " + viewId);
             Log.d("loglog", "카드" + draw_card);
-            */
 
             // 생성한 랜덤 숫자를 카드값으로 설정
             draw_card.setSelected_num(random_num);
@@ -220,7 +218,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         //결과카드를 다 뽑았을 때 보이기/숨기기
         //카드가 모두 뽑힐 경우
         _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);    //결과 버튼을 보이기
-        /* _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);    //카드들 없애기*/
+         _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);    //카드들 없애기
         _binding_mainPage.resetBtn.setVisibility(View.VISIBLE);     //리셋버튼 보이기
         _binding_mainPage.suffleBtn.setVisibility(View.INVISIBLE);  //셔플버튼 없애기
     }
