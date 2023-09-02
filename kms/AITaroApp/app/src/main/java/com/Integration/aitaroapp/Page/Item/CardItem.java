@@ -37,10 +37,8 @@ public class CardItem {
     @NotNull
     @Override
     public String toString() {
-        return " CardItem{ " +
-                " card_item= " + card_item +
-                " , selected_num= " + selected_num +
+        return " , selected_num= " + selected_num +
                 " card_value " + card_value +
-                 '}';
+                 '}' + "\n";
     }
 }

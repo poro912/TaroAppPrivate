@@ -26,9 +26,9 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
     private CardDrawAdapter cardDrawAdapter;
     private ArrayList<CardItem> draw_card_item = new ArrayList<>();     //리사이클러뷰 타로카드 뒷면 장수
     static ArrayList<Integer> selectedCard = new ArrayList<>();         //뽑은 카드 계수
-    private Random random_card;
     private MyDialog myDialog;
     static final private int CARD_NUMBER = 78;      //타로카드 장수 고정
+    private Random random_card;
     Intent get_data;            //인텐트로 게임 별 타로카드 장수 가져오기
     Intent move_result;       //뽑은 카드값 넘겨주기
     private int viewId;        //getResources().getIdentifier()
@@ -40,6 +40,9 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         _binding_mainPage = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(_binding_mainPage.getRoot());
 
+        // selectedCard 배열 초기화
+        selectedCard.clear();
+
         init();
     }
 
@@ -48,7 +51,6 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         get_data = getIntent();
         //어댑터 객체 생성
         cardDrawAdapter = new CardDrawAdapter(this, draw_card_item);
-        random_card = new Random();
 
         drawCardItem();     //타로카드 장수 리사이클러뷰 연결
         getDrawCard();      //타로카드 관련 이미지, 랜덤 값 배열생성
@@ -72,18 +74,31 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
     }
 
     private void getDrawCard() {
+        ArrayList<Integer> overlap_num = new ArrayList<>();
+        random_card = new Random();
         for (int i = 0; i < CARD_NUMBER; i++) {
             CardItem draw_card = new CardItem();
+            // 타로카드 뒷면 이미지 변경
             draw_card.setCard_item(R.drawable.back_taro_card);
 
+            int random_num;
+            do {
+                // 0부터 CARD_NUMBER, 77까지의 중복되지 않는 랜덤 숫자 생성
+                random_num = random_card.nextInt(CARD_NUMBER);
+            } while (overlap_num.contains(random_num));
+
+            overlap_num.add(random_num);
+
+            /*
             String imageName = "taro_" + i;
             int viewId = getResources().getIdentifier(imageName, "drawable", getPackageName());
             draw_card.setCard_value(viewId);
-            /*Log.d("loglog", "카드 이미지 이름 및 숫자: " + imageName + ", 리소스 ID: " + viewId);*/
+            Log.d("loglog", "카드 이미지 이름 및 숫자: " + imageName + ", 리소스 ID: " + viewId);
             Log.d("loglog", "카드" + draw_card);
+            */
 
-            // 카드값 int 랜덤 배정
-            draw_card.setSelected_num(random_card.nextInt(77) + 1);
+            // 생성한 랜덤 숫자를 카드값으로 설정
+            draw_card.setSelected_num(random_num);
             cardDrawAdapter.addItem(draw_card);
         }
     }
@@ -103,15 +118,12 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
 
         for (int i = 0; i < draw_card_item.size(); i++) {
             draw_card_item.set(i, shuffledItems.get(i));
-            Log.d("loglog", "셔플" + draw_card_item.get(i));
-
         }
-
         cardDrawAdapter.notifyDataSetChanged();
 
         Toast.makeText(MainActivity.this, "셔플", Toast.LENGTH_SHORT).show();
         Log.d("loglog", "셔플 후 카드 개수: " + cardDrawAdapter.getItemCount());
-        Log.d("loglog", "셔플 후 카드 아이템: " + draw_card_item.toString());
+        Log.d("loglog", "셔플 후 카드 아이템: " + "\n" + draw_card_item.toString() + "\n");
 
     }
 
@@ -208,13 +220,13 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
         //결과카드를 다 뽑았을 때 보이기/숨기기
         //카드가 모두 뽑힐 경우
         _binding_mainPage.resultBtn.setVisibility(View.VISIBLE);    //결과 버튼을 보이기
-        _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);    //카드들 없애기
+        /* _binding_mainPage.taroCardSelectedRecyclerView.setVisibility(View.GONE);    //카드들 없애기*/
         _binding_mainPage.resetBtn.setVisibility(View.VISIBLE);     //리셋버튼 보이기
         _binding_mainPage.suffleBtn.setVisibility(View.INVISIBLE);  //셔플버튼 없애기
     }
 
-    private void cardExpectedOver(int expectedCardCount){
-        if (expectedCardCount < selectedCard.size()){
+    private void cardExpectedOver(int expectedCardCount) {
+        if (expectedCardCount < selectedCard.size()) {
             selectedCard.remove(selectedCard.size() - 1);
         }
     }
@@ -228,7 +240,7 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
             Log.d("loglog", "selected Cards: " + selectedCard.toString());
 
             if (result_selected_card_size == 3) {     //뽑은 카드ArrayList의 사이즈가 3이면
-               visibilityItem();
+                visibilityItem();
             }
 
             cardExpectedOver(3);
