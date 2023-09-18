@@ -1,36 +1,54 @@
 package TaroInterface;
 
 public class CardHolder {
-    Card card;
-    int x;
-    int y;
+    // 각도
     int rotation;
-    String mean;
+    // 가중치
     String weight;
-
-    /*
+    // 좌표
     private int x, y;
-    private Card? card;
-    private string? mean;
+    private Card card;
+    private String mean;
 
-    public int X { get; set; }
-    public int Y { get; set; }
-    public string? Mean { get; set; }
-    public Card? Card { get { return card; } }
+    public int getX() {
+        return x;
+    }
 
-    public bool registCard(Card card)
-    {
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
+    public String getMean() {
+        return mean;
+    }
+
+    public void setMean(String mean) {
+        this.mean = mean;
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public boolean registCard(Card card) {
         this.card = card;
         return true;
     }
 
-    public bool removeCard()
-    {
-        if(this.card == null)
+    public boolean removeCard() {
+        if (this.card == null) {
             return false;
+        }
 
         this.card = null;
         return true;
     }
-    */
 }
