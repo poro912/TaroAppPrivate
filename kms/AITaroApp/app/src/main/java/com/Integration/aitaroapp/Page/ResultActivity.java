@@ -1,6 +1,7 @@
 package com.Integration.aitaroapp.Page;
 
 import android.content.Intent;
+import android.media.Image;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -12,6 +13,7 @@ import com.Integration.aitaroapp.Page.Dialog.MyDialog;
 import com.Integration.aitaroapp.Page.Interface.ExitDialogListener;
 import com.Integration.aitaroapp.R;
 import com.Integration.aitaroapp.databinding.ActivityResultBinding;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -22,7 +24,29 @@ public class ResultActivity extends BaseActivity implements ExitDialogListener.F
     private MyDialog myDialog;
     private boolean is_front = false;
     private static final String draw_card_image = "taro_";
-    private ImageView result_card_item;
+    private int[] threeCardHolderViewId = {
+            R.id.result_three_pos0,
+            R.id.result_three_pos1,
+            R.id.result_three_pos2
+    };
+    private int[] fiveCardHolderViewId = {
+            R.id.result_five_pos0,
+            R.id.result_five_pos1,
+            R.id.result_five_pos2,
+            R.id.result_five_pos3,
+            R.id.result_five_pos4
+
+    };
+    private int[] eightCardHolderViewId = {
+            R.id.result_eight_pos0,
+            R.id.result_eight_pos1,
+            R.id.result_eight_pos2,
+            R.id.result_eight_pos3,
+            R.id.result_eight_pos4,
+            R.id.result_eight_pos5,
+            R.id.result_eight_pos6,
+            R.id.result_eight_pos7
+    };
 
 
     @Override
@@ -39,7 +63,7 @@ public class ResultActivity extends BaseActivity implements ExitDialogListener.F
     private void init() {
         handleReceivedArrayList();
         btnItem();
-        cardValue();
+        showCardImage();
     }
 
 
@@ -97,56 +121,89 @@ public class ResultActivity extends BaseActivity implements ExitDialogListener.F
     }
 
     private void cardValue() {
-      /*  for (int i = 0; i < 3; i++){
-            final int index = i;
-            int asd = getResources().getIdentifier("resultThreePos" + i, "id", getPackageName());
-            View cardView = findViewById(asd);
-
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (index < result_card.size()){
-                        int cardValue = result_card.get(index);
-                        showCardImage(cardValue);
-
-                    }
-                }
-            });
-        }*/
 
         _binding_result_page.resultThreeCardInclude.resultThreePos0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String list_value = result_card.get(0).toString();
                 Toast.makeText(ResultActivity.this, list_value, Toast.LENGTH_SHORT).show();
-                showCardImage(result_card.get(0));
+
             }
         });
         _binding_result_page.resultThreeCardInclude.resultThreePos1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String list_value = result_card.get(1).toString();
-                Toast.makeText(ResultActivity.this, list_value, Toast.LENGTH_SHORT).show();
+
+
             }
         });
         _binding_result_page.resultThreeCardInclude.resultThreePos2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String list_value = result_card.get(2).toString();
-                Toast.makeText(ResultActivity.this, list_value, Toast.LENGTH_SHORT).show();
+                result_card.get(2);
+
             }
         });
     }
 
-    private void showCardImage(int value){
+    private void showCardImage() {
         //카드 이미지 번호 가져오기
-       String cardValue = draw_card_image + value;
 
-       int resource_id = getResources().getIdentifier(cardValue, "drawable", getPackageName());
-        if (resource_id != 0) {
-            _binding_result_page.resultThreeCardInclude.resultThreePos0.setImageResource(resource_id);
+        /*String resourceName = "_binding_result_page.resultThreeCardInclude.resultThreePos";
+
+        for (int i = 0; i < result_card.size(); i ++) {
+            String cardValue = draw_card_image + i;
+            Log.d("loglog", "cardValue : " + cardValue);
+            int resource_id = getResources().getIdentifier(cardValue, "drawable", getPackageName());
+            Log.d("loglog", "resourceId : " + resource_id);
+
+            ImageView cardResult = findViewById(i);
+            Log.d("loglog", "cardResult : " + cardResult);
+
+
+            cardResult.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 클릭된 ImageView에 클릭한 리소스 설정
+                    cardResult.setImageResource(resource_id);
+                }
+            });
+        }*/
+
+        for (int i = 0; i < result_card.size(); i++) {
+            String cardValue = draw_card_image + i;
+            int resource_id = getResources().getIdentifier(cardValue, "drawable", getPackageName());
+            String resourceName = "_binding_result_page.resultThreeCardInclude.resultThreePos" + i;
+
+            int viewId = getResources().getIdentifier(resourceName, "id", getPackageName());
+            Log.d("loglog", "viewId : " + viewId);
+
+            if (viewId != 0) {
+
+                ImageView imageView = findViewById(viewId);
+                Log.d("loglog", "imageView : " + imageView);
+
+                if (imageView != null) {
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            imageView.setImageResource(resource_id);
+                            Log.d("loglog", "imageViewClick" + imageView);
+                            Log.d("loglog", "v" + v);
+                        }
+                    });
+
+                }
+            }
+
+          /*  if (resource_id != 0) {
+                _binding_result_page.resultThreeCardInclude.resultThreePos0.setImageResource(resource_id);
+            }*/
         }
+
     }
+
     @Override
     public void onBackPressed() {
         programExit();
