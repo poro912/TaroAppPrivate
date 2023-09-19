@@ -1,0 +1,8 @@
+java ver 18
+
+API level 29
+android 휴대폰 13
+
+compileSDK 33
+minSdk 29
+targetSdk 33
