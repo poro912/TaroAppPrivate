@@ -9,7 +9,7 @@
         android:visibility="gone">
 
     <ImageView
-            android:id="@+id/five_card_pos1_card"
+            android:id="@+id/five_card_pos0"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/card_result_img"
@@ -21,7 +21,7 @@
             app:layout_constraintVertical_bias="0"/>
 
     <ImageView
-            android:id="@+id/five_card_pos2_card"
+            android:id="@+id/five_card_pos1"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/card_result_img"
@@ -33,7 +33,7 @@
             app:layout_constraintVertical_bias="1"/>
 
     <ImageView
-            android:id="@+id/five_card_pos3_card"
+            android:id="@+id/five_card_pos2"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/card_result_img"
@@ -45,7 +45,7 @@
             app:layout_constraintVertical_bias="0"/>
 
     <ImageView
-            android:id="@+id/five_card_pos4_card"
+            android:id="@+id/five_card_pos3"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/card_result_img"
@@ -57,7 +57,7 @@
             app:layout_constraintVertical_bias="1"/>
 
     <ImageView
-            android:id="@+id/five_card_pos5_card"
+            android:id="@+id/five_card_pos4"
             android:layout_width="80dp"
             android:layout_height="160dp"
             android:background="@drawable/card_result_img"
