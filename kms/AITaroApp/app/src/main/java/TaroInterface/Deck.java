@@ -42,9 +42,8 @@ public class Deck {
         return null;
     }
 
-    public Card push() {
+    public void push() {
         // 구현 필요
-        return null;
     }
 
     public void shuffle() {
