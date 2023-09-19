@@ -1,6 +1,8 @@
 마이크로 소프트 C# 코딩 규칙 문서	: https://learn.microsoft.com/ko-kr/dotnet/csharp/fundamentals/coding-style/coding-conventions
 예제로 배우는 C# 프로그래밍 네이밍 규칙 문서	: https://www.csharpstudy.com/Guide/Guide-naming.aspx
 
+XML		: 스네이크 케이스		this_is_xml
+
 매크로		: 대문자 스네이크 케이스	PRINT_MECRO 
 클래스		: 파스칼 케이스		DataClass
 구조체		: 파스칼 케이스		DataStructure
@@ -33,7 +35,9 @@
 
 ETC
 	들여쓰기는 4칸 탭으로 한다.
-	중괄호는 문장의 끝에 한다.		if (true){
+	중괄호는 문장의 끝에 한다.		if (true)
+						{
+
 						}
 
 	프로그램 작성 시 코드 블럭이 2~3줄이 넘어가면 별개의 함수로 뺀다 (가독성)
