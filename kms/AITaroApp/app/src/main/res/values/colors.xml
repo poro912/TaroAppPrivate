@@ -10,4 +10,7 @@
     <color name="Transparent">#00000000</color>
     <color name="red">#FF0000</color>
     <color name="gray">#666a73</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="background_alpha">#000000</color>
+    <color name="deepPurple">#33215B</color>
 </resources>
