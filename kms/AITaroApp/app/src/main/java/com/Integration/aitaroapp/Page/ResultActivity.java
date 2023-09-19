@@ -149,27 +149,6 @@ public class ResultActivity extends BaseActivity implements ExitDialogListener.F
     private void showCardImage() {
         //카드 이미지 번호 가져오기
 
-        /*String resourceName = "_binding_result_page.resultThreeCardInclude.resultThreePos";
-
-        for (int i = 0; i < result_card.size(); i ++) {
-            String cardValue = draw_card_image + i;
-            Log.d("loglog", "cardValue : " + cardValue);
-            int resource_id = getResources().getIdentifier(cardValue, "drawable", getPackageName());
-            Log.d("loglog", "resourceId : " + resource_id);
-
-            ImageView cardResult = findViewById(i);
-            Log.d("loglog", "cardResult : " + cardResult);
-
-
-            cardResult.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // 클릭된 ImageView에 클릭한 리소스 설정
-                    cardResult.setImageResource(resource_id);
-                }
-            });
-        }*/
-
         for (int i = 0; i < result_card.size(); i++) {
             String cardValue = draw_card_image + i;
             int resource_id = getResources().getIdentifier(cardValue, "drawable", getPackageName());
