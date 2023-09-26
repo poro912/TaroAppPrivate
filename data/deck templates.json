@@ -1,0 +1,35 @@
+{
+	"name": "",
+	"category": ["major","wand","cup","sword","pentacle"],
+	"cards": [
+		{
+			"category": "major/wand/cup/sword/pentacle",
+			"name": "",
+			"number": 0,
+			"forward": [],
+			"reverse": [],
+			"2": [],
+			"1": [],
+			"0": [],
+			"-1": [],
+			"-2": [],
+			"degree": 0
+		},
+		{
+			"category": "major/wand/cup/sword/pentacle",
+			"name": "",
+			"number": 0,
+			"forward": [],
+			"reverse": [],
+			"2": [],
+			"1": [],
+			"0": [],
+			"-1": [],
+			"-2": [],
+			"degree": 0
+		},
+		{}
+
+		
+	]
+}
