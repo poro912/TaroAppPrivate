@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import com.Integration.aitaroapp.Page.Item.StoreRecyclerViewItem;
-import com.Integration.aitaroapp.Page.StoreActivity;
+import com.Integration.aitaroapp.Page.StorePage.BackgroundBuyActivity;
+import com.Integration.aitaroapp.Page.StorePage.CardBuyActivity;
+import com.Integration.aitaroapp.Page.StorePage.SpreadBuyActivity;
 import com.Integration.aitaroapp.R;
 import org.jetbrains.annotations.NotNull;
 
@@ -49,19 +51,18 @@ public class StoreSettingAdapter extends RecyclerView.Adapter<StoreSettingAdapte
                 Log.d("loglog", String.valueOf(mPosition));
                 Context context = view.getContext();
 
-                Intent moveActivity = new Intent(context, StoreActivity.class);
 
                 if (position == 0) {
-                    moveActivity.putExtra("buyCard", "buyCard");
-                    context.startActivity(moveActivity);
+                    Intent card_activity = new Intent(context, CardBuyActivity.class);
+                    context.startActivity(card_activity);
 
                 } else if (position == 1) {
-                    moveActivity.putExtra("buySpread", "buySpread");
-                    context.startActivity(moveActivity);
+                    Intent spread_activity = new Intent(context, SpreadBuyActivity.class);
+                    context.startActivity(spread_activity);
 
                 } else if (position == 2) {
-                    moveActivity.putExtra("buybg", "buybg");
-                    context.startActivity(moveActivity);
+                    Intent background_activity = new Intent(context, BackgroundBuyActivity.class);
+                    context.startActivity(background_activity);
                 }
             }
         });

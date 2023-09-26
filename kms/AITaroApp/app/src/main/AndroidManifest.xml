@@ -12,6 +12,15 @@
             android:theme="@style/Theme.AITaroApp"
             tools:targetApi="31">
         <activity
+                android:name=".Page.StorePage.CardBuyActivity"
+                android:exported="false"/>
+        <activity
+                android:name=".Page.StorePage.BackgroundBuyActivity"
+                android:exported="false"/>
+        <activity
+                android:name=".Page.StorePage.SpreadBuyActivity"
+                android:exported="false"/>
+        <activity
                 android:name=".Page.ResultActivity"
                 android:exported="false"/>
         <activity
@@ -23,9 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity
-                android:name=".Page.StoreActivity"
-                android:exported="false"/>
+
         <activity
                 android:name=".Page.StartActivity"
                 android:exported="true">
