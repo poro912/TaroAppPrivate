@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 public class SpreadBuyActivity extends AppCompatActivity {
     private ActivitySpreadBuyBinding binding_spread;
-    private Intent get_intent;
     private DividerItemDecoration dividerItemDecoration;
 
     @Override
