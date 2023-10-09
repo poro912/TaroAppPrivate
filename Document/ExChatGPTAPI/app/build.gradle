@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    namespace 'com.Integration.aitaroapp'
+    namespace 'com.exchatgptapi'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.Integration.aitaroapp"
-        minSdk 29
+        applicationId "com.exchatgptapi"
+        minSdk 30
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -30,22 +30,10 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    task wrapper(type: Wrapper) {
-        gradleVersion = '7.0'
-    }
-    sourceSets {
-        main {
-            java {
-                srcDirs 'src\\main\\java', 'src\\main\\system\\systemtest'
-            }
-        }
-    }
 }
 
 dependencies {
 
-  
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -55,6 +43,4 @@ dependencies {
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
-
 }
