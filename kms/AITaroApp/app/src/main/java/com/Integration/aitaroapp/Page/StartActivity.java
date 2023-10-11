@@ -1,13 +1,14 @@
 package com.Integration.aitaroapp.Page;
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.Integration.aitaroapp.Page.Adapter.GameSelectedRecyclerViewAdapter;
 import com.Integration.aitaroapp.Page.Adapter.StoreSettingAdapter;
+import com.Integration.aitaroapp.Page.Dialog.MyDialog;
 import com.Integration.aitaroapp.Page.Item.MainBtnSelected;
 import com.Integration.aitaroapp.Page.Item.StoreRecyclerViewItem;
 import com.Integration.aitaroapp.R;
@@ -15,10 +16,13 @@ import com.Integration.aitaroapp.databinding.ActivityStartBinding;
 
 import java.util.ArrayList;
 
-public class StartActivity extends AppCompatActivity {
+public class StartActivity extends BaseActivity {
     private ActivityStartBinding _binding_startPage;
     private ArrayList<MainBtnSelected> btn_item = new ArrayList<>();
     boolean pageOpen = false;
+    private MyDialog myDialog;
+    private SlidingPageAnimationListener slidingPageAnimationListener = new SlidingPageAnimationListener();
+    //스토어, 설정 페이지 애니메이션 효과적용
     Animation left_anim;
     Animation right_anim;
 
@@ -37,13 +41,14 @@ public class StartActivity extends AppCompatActivity {
         recyclerViewItem();
         storeRecyclerView();
         layoutAnim();
+        backGroundTouchLayout();
 
     }
 
     private void mainWindowTouch() {
 
-                _binding_startPage.includedItem.storeBtn.setVisibility(View.VISIBLE);
-                _binding_startPage.cardSelectRecyclerView.setVisibility(View.VISIBLE);
+        _binding_startPage.includedItem.storeBtn.setVisibility(View.VISIBLE);
+        _binding_startPage.cardSelectRecyclerView.setVisibility(View.VISIBLE);
     }
 
     private void recyclerViewItem() {
@@ -73,33 +78,64 @@ public class StartActivity extends AppCompatActivity {
         _binding_startPage.includedItem.storeRecyclerView.setAdapter(storeSettingAdapter);
 
     }
-    
+
+    private void backGroundTouchLayout() {
+        _binding_startPage.includedItem.blurLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              backPressedAnim();
+            }
+        });
+    }
+
     private void layoutAnim() {
-        //스토어, 설정 페이지 애니메이션 효과적용
         left_anim = AnimationUtils.loadAnimation(this, R.anim.setting_anime_left);
         right_anim = AnimationUtils.loadAnimation(this, R.anim.setting_anime_right);
 
-        SlidingPageAnimationListener animationListener = new SlidingPageAnimationListener();
-
-        left_anim.setAnimationListener(animationListener);
-        right_anim.setAnimationListener(animationListener);
+        left_anim.setAnimationListener(slidingPageAnimationListener);
+        right_anim.setAnimationListener(slidingPageAnimationListener);
 
         _binding_startPage.includedItem.storeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (pageOpen)
-                {
+                if (pageOpen) {     //pageOpen = false
                     _binding_startPage.includedItem.page.startAnimation(left_anim);
                     _binding_startPage.includedItem.storeBtn.startAnimation(left_anim);
-                }
-                else
-                {
-                    _binding_startPage.includedItem.page.setVisibility(View.VISIBLE);
+                } else {              //pageOpen = true 일 때 오른쪽으로 튀어나옴
                     _binding_startPage.includedItem.page.startAnimation(right_anim);
                     _binding_startPage.includedItem.storeBtn.startAnimation(right_anim);
+                    _binding_startPage.includedItem.page.setVisibility(View.VISIBLE);
+                    _binding_startPage.includedItem.blurLayout.setVisibility(View.VISIBLE);
                 }
             }
         });
+    }
+
+    private void backPressedAnim() {
+        left_anim = AnimationUtils.loadAnimation(StartActivity.this, R.anim.setting_anime_left);
+        left_anim.setAnimationListener(slidingPageAnimationListener);
+
+        if (pageOpen) {
+            // 페이지가 열려있을 때 뒤로가기 버튼을 누르면 페이지를 닫고 pageOpen을 false로 변경
+            _binding_startPage.includedItem.page.startAnimation(left_anim);
+            _binding_startPage.includedItem.storeBtn.startAnimation(left_anim);
+            _binding_startPage.includedItem.page.setVisibility(View.GONE);
+            _binding_startPage.includedItem.blurLayout.setVisibility(View.GONE);
+            pageOpen = true;
+        } else {
+            myDialog = new MyDialog(this);
+            myDialog.show();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        backPressedAnim();
+    }
+
+    @Override
+    public void onExitConfirmed() {
+        exitApp();
     }
 
     private class SlidingPageAnimationListener implements Animation.AnimationListener {
@@ -111,13 +147,11 @@ public class StartActivity extends AppCompatActivity {
 
         @Override
         public void onAnimationEnd(Animation animation) {
-            if (pageOpen)
-            {
+            if (pageOpen) {
                 _binding_startPage.includedItem.page.setVisibility(View.GONE);
+                _binding_startPage.includedItem.blurLayout.setVisibility(View.GONE);
                 pageOpen = false;
-            }
-            else
-            {
+            } else {
                 pageOpen = true;
             }
         }
