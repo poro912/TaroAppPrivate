@@ -102,27 +102,13 @@ public class Deck {
     }
 
     public Card random() {
-        if(cards.size()==0){
-            System.out.println("데이터가 존재하지 않습니다.");
-            return null;
-        }
-        cards = (int)(Math.random() * cards.size();
-        /*
-        Random random = new Random();
-        while (0<list.size())
-        {
-            int index = random.nextInt(cards.size());//꺼낼 번호를 랜덤하게 선택합니다.
-            Integer in = (int)cards.remove(index);//중복되지 않도록 제거합니다.
-        }
-        //GPT
-        if (cards.size() == 0) {
+        if (this.cards.size() == 0) {
             System.out.println("데이터가 존재하지 않습니다");
             return null;
+        } else {
+            int randomIndex = (int) (Math.random() * (double) this.cards.size());
+            return (Card) this.cards.get(randomIndex);
         }
-        int randomIndex = (int) (Math.random() * cards.size());
-        return cards.get(randomIndex);
-    }
-*/
     }
 
     public Card next() {
