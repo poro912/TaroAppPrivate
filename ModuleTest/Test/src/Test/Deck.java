@@ -28,7 +28,7 @@ public class Deck {
 
     public Card pop() {
         if (this.cards.size() == 0) {
-            System.out.println("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+            System.out.println("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
             return null;
         } else {
             return (Card)this.cards.remove(this.cards.size() - 1);
@@ -37,7 +37,7 @@ public class Deck {
 
     public Card peek() {
         if (this.cards.size() == 0) {
-            System.out.println("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+            System.out.println("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
             return null;
         } else {
             return (Card)this.cards.get(this.cards.size() - 1);
@@ -56,7 +56,7 @@ public class Deck {
 
     public Card random() {
         if (this.cards.size() == 0) {
-            System.out.println("µ¥ÀÌÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù");
+            System.out.println("ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
             return null;
         } else {
             int randomIndex = (int)(Math.random() * (double)this.cards.size());

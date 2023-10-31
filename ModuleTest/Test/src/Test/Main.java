@@ -4,11 +4,11 @@ import java.util.ArrayList;
 public class Main {
 
 	public static void main(String[] args) {
-		Card card1 = new Card("¹Ùº¸, ±¤´ë",0);
-        Card card2 = new Card("¸¶¹ý»ç",1);
-        Card card3 = new Card("¿©»çÁ¦",2);
-        Card card4 = new Card("¿©È²Á¦",3);
-        Card card5 = new Card("È²Á¦",4);
+		Card card1 = new Card("ê´‘ëŒ€",0);
+        Card card2 = new Card("ë§ˆìˆ ì‚¬",1);
+        Card card3 = new Card("ì—¬ì‚¬ì œ",2);
+        Card card4 = new Card("ì—¬ì œ",3);
+        Card card5 = new Card("í™©ì œ",4);
         Deck d1 = new Deck();
         d1.push(card1);
         d1.push(card2);
