@@ -1,0 +1,8 @@
+<resources>
+	<style name="Theme.MystiqueTaro.NoActionBar">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+	</style>
+	<style name="Theme.MystiqueTaro.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+	<style name="Theme.MystiqueTaro.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+</resources>

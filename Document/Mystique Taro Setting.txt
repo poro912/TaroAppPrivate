@@ -1,0 +1,35 @@
+Mystique Taro
+MinimumSdk	: 29
+targetSdk	: 33
+JDK		: 17
+bytecodeTargetLevel	: 17
+bytecodeTargetLevel	: 7
+
+gradleVersion	: 7.0
+sourceCompatibility JavaVersion.VERSION_1_8
+
+
+사용 AVD	: Pixel_6_API_33.avd
+
+패키지		: com.mystiquetaro
+깃 사용 안함	: 깃은 bash로 직접 컨트롤 하여 추가하기
+
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'androidx.navigation:navigation-fragment:2.6.0'
+    implementation 'androidx.navigation:navigation-ui:2.6.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    modules {
+        module("org.jetbrains.kotlin:kotlin-stdlib-jdk7") {
+            replacedBy("org.jetbrains.kotlin:kotlin-stdlib", "kotlin-stdlib-jdk7 is now part of kotlin-stdlib")
+        }
+        module("org.jetbrains.kotlin:kotlin-stdlib-jdk8") {
+            replacedBy("org.jetbrains.kotlin:kotlin-stdlib", "kotlin-stdlib-jdk8 is now part of kotlin-stdlib")
+        }
+    }
+}
