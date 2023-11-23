@@ -1,5 +1,6 @@
 package com.Integration.aitaroapp.Page;
 
+import TaroSystem.MHTestMain;
 import android.content.Intent;
 import android.media.Image;
 import android.util.Log;
@@ -42,7 +43,8 @@ public class MainActivity extends BaseActivity implements CardSelectionListener,
 
         // selectedCard 배열 초기화
         selectedCard.clear();
-
+        Log.d("test","hello");
+        MHTestMain.start();
         init();
     }
 
