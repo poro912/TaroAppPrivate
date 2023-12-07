@@ -1,22 +1,17 @@
-package card;
+package Test;
+
 import java.util.ArrayList;
 
-// 싱글톤 형식으로 데이터를 쌓아 공유함
 public class Card {
-    // 추가 데이터는 json에서 직접 읽어온다.
-    // Json json;
-
     String type;
-
     private int number = -1;
     private String name = "";
     private String category = "";
-
     public ArrayList<String> forward;
     public ArrayList<String> reverse;
 
     public int getNumber() {
-        return number;
+        return this.number;
     }
 
     public void setNumber(int number) {
@@ -24,7 +19,7 @@ public class Card {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -32,7 +27,7 @@ public class Card {
     }
 
     public String getCategory() {
-        return category;
+        return this.category;
     }
 
     public void setCategory(String category) {
@@ -42,27 +37,27 @@ public class Card {
     public Card(String name, int number) {
         this.name = name;
         this.number = number;
-        forward = new ArrayList<String>();
-        reverse = new ArrayList<String>();
+        this.forward = new ArrayList();
+        this.reverse = new ArrayList();
     }
 
     public Card(String name, int number, String category) {
         this.name = name;
         this.number = number;
         this.category = category;
-        forward = new ArrayList<>();
-        reverse = new ArrayList<>();
+        this.forward = new ArrayList();
+        this.reverse = new ArrayList();
     }
 
     public void addForwardMean(String mean) {
-        forward.add(mean);
+        this.forward.add(mean);
     }
 
     public void addReverseMean(String mean) {
-        reverse.add(mean);
+        this.reverse.add(mean);
     }
-    @Override
+
     public String toString() {
-        return name + " " + number;
+        return this.name + " " + this.number;
     }
 }
